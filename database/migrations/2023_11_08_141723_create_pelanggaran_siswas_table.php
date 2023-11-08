@@ -16,6 +16,10 @@ return new class extends Migration
             $table->date('tanggal');
             $table->unsignedBigInteger('pelanggaran_id')->nullable();
             $table->foreign('pelanggaran_id')->references('id')->on('master_pelanggaran');
+            $table->unsignedBigInteger('sanksi_id')->nullable();
+            $table->foreign('sanksi_id')->references('id')->on('sanksi');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('user');
             $table->timestamps();
         });
     }
