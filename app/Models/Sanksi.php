@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Sanksi extends Model
 {
     use HasFactory;
+    protected $table = 'sanksi';
+    protected $guarded = ['id'];
+
+    public function pelanggaran_siswa(){
+        $this->hasMany(PelanggaranSiswa::class);
+    }
 }
