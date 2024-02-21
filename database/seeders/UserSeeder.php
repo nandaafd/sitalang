@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,7 +22,19 @@ class UserSeeder extends Seeder
             ],
         ];
         foreach ($data as $key => $value) {
-            User::create($value);
+            $user = User::create($value);
+            $user_id = $user->id;
+            $admin = [
+                [
+                    'user_id'=>$user_id,
+                    'code'=>'ADM-SITALANG-'.$user_id,
+
+                ]
+            ];
+            foreach ($admin as $key => $adm) {
+                Admin::create($adm);
+            }
         }
+        
     }
 }

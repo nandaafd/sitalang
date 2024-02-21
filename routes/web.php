@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\KelasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::prefix('dashboard')->group(function () {
+    Route::resource('/', DashboardController::class);
+    Route::resource('admin', AdminController::class);
+    Route::resource('kelas', KelasController::class);
 });
