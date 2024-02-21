@@ -11,8 +11,9 @@ return new class extends Migration
     {
         Schema::create('sanksi', function (Blueprint $table) {
             $table->id();
-            $table->string('poin');
+            $table->string('range_poin');
             $table->string('sanksi');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

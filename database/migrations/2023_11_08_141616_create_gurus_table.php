@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_telp');
             $table->string('foto');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

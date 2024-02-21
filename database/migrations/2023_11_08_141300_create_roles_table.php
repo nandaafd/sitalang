@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('role', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

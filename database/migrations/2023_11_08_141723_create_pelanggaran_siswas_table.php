@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('sanksi_id')->references('id')->on('sanksi');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('user');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

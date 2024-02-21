@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('poin');
             $table->unsignedBigInteger('kategori_id')->nullable();
             $table->foreign('kategori_id')->references('id')->on('kategori');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('user');
             $table->unsignedBigInteger('kelas_id')->nullable();
-            $table->foreign('kelas_id')->references('kelas')->on('kelas');
+            $table->foreign('kelas_id')->references('id')->on('kelas');
             $table->string('no_telp');
             $table->string('alamat');
             $table->string('jenis_kelamin');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('nama_ortu');
             $table->string('telp_ortu');
             $table->string('foto');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }
