@@ -12,6 +12,6 @@ class Sanksi extends Model
     protected $guarded = ['id'];
 
     public function pelanggaran_siswa(){
-        $this->hasMany(PelanggaranSiswa::class);
+        return $this->hasMany(PelanggaranSiswa::class);
     }
 }

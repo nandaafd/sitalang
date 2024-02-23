@@ -26,19 +26,16 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="bi bi-list-columns mr-3"></i> Pelanggaran Siswa</a>
+                <a href="{{route('pelanggaransiswa.index')}}"><i class="bi bi-list-columns mr-3"></i> Pelanggaran Siswa</a>
             </li>
             <li>
-                <a href="#"><i class="bi bi-exclamation-triangle mr-3"></i> Master Pelanggaran</a>
+                <a href="{{route('masterpelanggaran.index')}}"><i class="bi bi-exclamation-triangle mr-3"></i> Master Pelanggaran</a>
             </li>
             <li>
-                <a href="{{url('/dashboard/kelas')}}"><i class="bi bi-door-closed mr-3"></i> Kelas</a>
+                <a href="{{route('kelas.index')}}"><i class="bi bi-door-closed mr-3"></i> Kelas</a>
             </li>
             <li>
-                <a href="{{url('/dashboard/kelas')}}"><i class="bi bi-journal-medical mr-3"></i> Sanksi</a>
-            </li>
-            <li>
-                <a href="#"><i class="bi bi-person-workspace mr-3"></i> Role</a>
+                <a href="{{route('sanksi.index')}}"><i class="bi bi-journal-medical mr-3"></i> Sanksi</a>
             </li>
         </ul>
 

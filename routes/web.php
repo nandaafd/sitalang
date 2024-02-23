@@ -3,6 +3,8 @@
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\KelasController;
+use App\Http\Controllers\Dashboard\MasterPelanggaranController;
+use App\Http\Controllers\Dashboard\PelanggaranSiswaController;
 use App\Http\Controllers\Dashboard\SanksiController;
 use App\Models\Sanksi;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +28,7 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('admin', AdminController::class);
     Route::resource('kelas', KelasController::class);
     Route::resource('sanksi', SanksiController::class);
+    Route::resource('masterpelanggaran', MasterPelanggaranController::class);
+    Route::resource('pelanggaransiswa', PelanggaranSiswaController::class);
 
 });

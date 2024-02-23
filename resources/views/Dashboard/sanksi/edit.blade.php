@@ -22,8 +22,8 @@
             @csrf
             <div class="mb-3">
                 <label for="range_poin" class="form-label">Pada Poin</label>
-                <input type="number" class="form-control @error('name') is-invalid @enderror" value="{{$data->range_poin}}" name="range_poin" placeholder="Tuliskan range poin maksimal..">
-                @error('poin')
+                <input type="number" class="form-control @error('range_poin') is-invalid @enderror" value="{{$data->range_poin}}" name="range_poin" placeholder="Tuliskan range poin maksimal..">
+                @error('range_poin')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -31,8 +31,8 @@
             </div>
             <div class="mb-3">
                 <label for="sanksi" class="form-label">Sanksi</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{$data->sanksi}}" name="sanksi" placeholder="Tuliskan sanksi disini..">
-                @error('name')
+                <input type="text" class="form-control @error('sanksi') is-invalid @enderror" value="{{$data->sanksi}}" name="sanksi" placeholder="Tuliskan sanksi disini..">
+                @error('sanksi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

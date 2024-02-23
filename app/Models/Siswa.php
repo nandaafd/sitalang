@@ -12,9 +12,9 @@ class Siswa extends Model
     protected $guarded = ['id'];
 
     public function user(){
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
     public function pelanggaran(){
-        $this->hasMany(PelanggaranSiswa::class);
+        return $this->hasMany(PelanggaranSiswa::class);
     }
 }

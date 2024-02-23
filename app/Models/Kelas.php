@@ -12,6 +12,6 @@ class Kelas extends Model
     protected $guarded = ['id'];
 
     public function siswa(){
-        $this->hasMany(Siswa::class);
+        return $this->hasMany(Siswa::class);
     }
 }

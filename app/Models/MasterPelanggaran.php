@@ -12,6 +12,6 @@ class MasterPelanggaran extends Model
     protected $guarded = ['id'];
 
     public function kategori(){
-        $this->belongsTo(Kategori::class);
+        return $this->belongsTo(Kategori::class);
     }
 }

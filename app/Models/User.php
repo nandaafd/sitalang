@@ -23,15 +23,15 @@ class User extends Authenticatable
     ];
 
     public function guru() {
-        $this->hasMany(Guru::class);
+        return $this->hasMany(Guru::class);
     }
     public function siswa() {
-        $this->hasMany(Siswa::class);
+        return $this->hasMany(Siswa::class);
     }
     public function pelanggaran_siswa(){
-        $this->hasMany(PelanggaranSiswa::class);
+        return $this->hasMany(PelanggaranSiswa::class);
     }
     public function role() {
-        $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class);
     }
 }
