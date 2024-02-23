@@ -7,36 +7,43 @@
     </div>
     <div class="container bg-light py-3 py-5 rounded px-4">
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         @if(session('err'))
-            <div class="alert alert-danger">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('err') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <div class="row mb-3">
             <div class="col-10">
-                <form action="" method="post">
-                    @method('post')
+                <form action="" method="get" id="frmFilter">
                     <div class="row">
                         <div class="col">
-                            <input class="form-control form-control-sm" placeholder="cari nama kelas.." type="text" name="name" id="filterName" value="">
-                        </div>
-                        <div class="col">
                             <select name="jurusan" class="form-select form-select-sm" id="filterJurusan">
-                                <option value="">Pilih jurusan</option>
-                                <option value=""></option>
+                                <option id="default" value="">Pilih jurusan..</option>
+                                <option {{$jurusan=='TKJ' ? 'selected' : ''}} value="TKJ">TKJ / Teknik Komputer Jaringan</option>
+                                <option {{$jurusan=='TEI' ? 'selected' : ''}} value="TEI">TEI / Teknik Elektronika Industri</option>
+                                <option {{$jurusan=='RPL' ? 'selected' : ''}} value="RPL">RPL / Rekayasa Perangkat Lunak</option>
+                                <option {{$jurusan=='AK' ? 'selected' : ''}} value="AK">AK / Akuntansi</option>
+                                <option {{$jurusan=='TBSM' ? 'selected' : ''}} value="TBSM">TBSM / Teknik Bisnis Sepeda Motor</option>
+                                <option {{$jurusan=='TKR' ? 'selected' : ''}} value="TKR">TKR / Teknik Kendaraan Ringan</option>
                             </select>
                         </div>
                         <div class="col">
                             <select name="kelas" class="form-select form-select-sm" id="filterKelas">
-                                <option value="">Pilih kelas</option>
+                                <option value="">Pilih kelas..</option>
+                                <option {{$kls=='x' ? 'selected' : ''}} value="x">X / Sepuluh</option>
+                                <option {{$kls=='xi' ? 'selected' : ''}} value="xi">XI / Sebelas</option>
+                                <option {{$kls=='xii' ? 'selected' : ''}} value="xii">XII / Dua Belas</option>
                             </select>
                         </div>
                         <div class="col">
-                            <a class="btn btn-primary btn-sm" href="">Cari</a>
+                            <button class="btn btn-primary btn-sm mr-1" type="submit">Cari</a>
+                            <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
                         </div>
                     </div>
                 </form>
@@ -46,6 +53,7 @@
             </div>
         </div>
         <div class="">
+            @isset($kelas)
             <table class="table table-hover">
                 <thead>
                     <tr class="">
@@ -60,13 +68,13 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$data->name}}</td>
                             <td>
-                                <div class="btn-group">
+                                <div class="">
                                     <form action="{{ route('kelas.destroy', $data->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" title="Hapus data" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i class="bi bi-trash3-fill"></i></button>
-                                      </form>  
-                                      <a href="{{route('kelas.edit', $data->id)}}" class="btn btn-success btn-sm" title="edit"><i class="bi bi-pencil"></i></a>            
+                                        <a href="{{route('kelas.edit', $data->id)}}" class="btn btn-success btn-sm" title="edit"><i class="bi bi-pencil"></i></a>            
+                                    </form>  
                                 </div>
                             </td>
                         </tr>
@@ -77,7 +85,22 @@
                     @endforelse
                 </tbody>
             </table>
+            {{$kelas->links() ?? ''}}
+            @endisset
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(e) {
+        $('#btnReset').click(function (e) {
+            e.preventDefault();
+            $('#filterJurusan').val('')
+            $('#filterKelas').val('')
+            setTimeout(function() {
+                $("#frmFilter").off("submit").submit();
+            }, 300);
+        })
+    })
+    
+</script>
 @endsection

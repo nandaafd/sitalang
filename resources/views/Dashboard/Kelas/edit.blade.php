@@ -6,13 +6,15 @@
     </div>
     <div class="container bg-light py-3 py-5 rounded px-4">
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         @if(session('err'))
-            <div class="alert alert-danger">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('err') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <form action="{{route('kelas.update',$data->id)}}" method="post">
@@ -28,7 +30,7 @@
                     </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Tambah</button>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Simpan</button>
         </form>
     </div>
 </div>

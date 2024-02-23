@@ -6,30 +6,38 @@ use App\Http\Controllers\Controller;
 use App\Models\Kelas;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Validator;
 
 class KelasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        $kelas = Kelas::where('is_deleted',false)->paginate(10);
-        return view('Dashboard.Kelas.index', compact('kelas'));
+        try{
+            $jurusan = $request->jurusan;
+            $kls = $request->kelas;
+            if ($jurusan || $kls) {
+                $kelas = Kelas::where('is_deleted',false)->where('name','like','%'.$kls.'%')
+                ->where('name','like','%'.$jurusan.'%')->paginate(10);
+            }
+            else {
+                $kelas =  Kelas::where('is_deleted',false)->paginate(10);
+            }
+        }
+        catch (Exception $e) {
+            $kelas =  new LengthAwarePaginator([], 0, 10);;
+            session()->flash('err', 'gagal tersambung dengan database, server database tidak bisa dihubungi');
+        }
+        
+        return view('Dashboard.Kelas.index', compact('kelas','jurusan','kls'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('Dashboard.Kelas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         try {
@@ -48,29 +56,26 @@ class KelasController extends Controller
         } catch (Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }
-        return redirect('/dashboard/kelas')->with('success','berhasil menambahkan data kelas');
+        return redirect('/dashboard/kelas')->with('success','Berhasil menambahkan data kelas');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
-        $data = Kelas::find($id);
+        try {
+            $data = Kelas::find($id);
+        } catch (Exception $ex) {
+            $kelas =  new LengthAwarePaginator([], 0, 10);
+            session()->flash('err', 'gagal tersambung dengan database, server database tidak bisa dihubungi');
+            return view('dashboard.kelas.edit', compact('data'));
+        }
         return view('dashboard.kelas.edit', compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         try{
@@ -82,6 +87,9 @@ class KelasController extends Controller
                     'name'=>$request->name
                 ]);
             }
+            else {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
         }
         catch (Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
@@ -89,9 +97,6 @@ class KelasController extends Controller
         return redirect()->route('kelas.index')->with('success','berhasil mengedit data kelas');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         try{
