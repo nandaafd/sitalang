@@ -3,7 +3,7 @@
     
 <div>
     <div class="h3">
-        Master Data Pelanggaran
+        Data Pelanggaran Siswa
     </div>
     <div class="container bg-light py-3 py-5 rounded px-4">
         @if(session('success'))
@@ -28,9 +28,9 @@
                         <div class="col">
                             <select name="kategori_id" id="filterKategori" class="form-control form-control-sm">
                                 <option value="">--pilih kategori--</option>
-                                @foreach ($kategori as $item)
+                                {{-- @foreach ($kategori as $item)
                                     <option {{$kat == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                         <div class="col">
@@ -41,47 +41,48 @@
                 </form>
             </div>
             <div class="col-2 text-end">
-                <a class="btn btn-primary" href="{{route('masterpelanggaran.create')}}" title="Tambah data sanksi"><i class="bi bi-plus"></i></a>
+                <a class="btn btn-primary" href="{{route('pelanggaransiswa.create')}}" title="Tambah data pelanggaran siswa"><i class="bi bi-plus"></i></a>
             </div>
         </div>
         <div class="">
-            @isset($pelanggaran)
+            @isset($pelsis)
             <table class="table table-hover">
                 <thead>
                     <tr class="">
                         <th>No</th>
-                        <th class="w-50">Nama Pelanggaran</th>
-                        <th class="">Poin</th>
-                        <th class="">Kategori</th>
+                        <th class="">Nama Siswa</th>
+                        <th class="">Tanggal</th>
+                        <th class="">Pelanggaran</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($pelanggaran as $data)
+                    @forelse ($pelsis as $data)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$data->nama_pelanggaran}}</td>
-                            <td>{{$data->poin}}</td>
-                            <td>{{$data->Kategori->name}}</td>
+                            <td>{{$data->siswa->user->fullname}}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->tanggal)->format('l, d-M-Y') }}</td>
+                            <td>{{$data->pelanggaran->nama_pelanggaran}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <form action="{{ route('masterpelanggaran.destroy', $data->id) }}" method="POST">
+                                    <form action="{{ route('pelanggaransiswa.destroy', $data->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" title="Hapus data" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i class="bi bi-trash3-fill"></i></button>
                                       </form>  
-                                      <a href="{{route('masterpelanggaran.edit', $data->id)}}" class="btn btn-success btn-sm" title="edit"><i class="bi bi-pencil"></i></a>            
+                                      <a href="{{route('pelanggaransiswa.edit', $data->id)}}" class="btn btn-success btn-sm" title="edit"><i class="bi bi-pencil"></i></a>            
+                                      <a href="{{route('pelanggaransiswa.show', $data->id)}}" class="btn btn-success btn-sm" title="detail"><i class="bi bi-card-list"></i></a>            
                                 </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center">--Tidak ada data--</td>
+                            <td colspan="5" class="text-center">--Tidak ada data--</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
-            {{ $pelanggaran->links() ?? '' }}
+            {{ $pelsis->links() ?? '' }}
             @endisset
         </div>
     </div>

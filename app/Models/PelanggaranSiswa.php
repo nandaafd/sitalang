@@ -14,7 +14,7 @@ class PelanggaranSiswa extends Model
     public function siswa(){
         return $this->belongsTo(Siswa::class);
     }
-    public function master_pelanggaran(){
+    public function pelanggaran(){
         return $this->belongsTo(MasterPelanggaran::class);
     }
     public function sanksi(){
