@@ -41,7 +41,15 @@
 
         <div class="row my-3">
             <div class="col">
-                <a href="" class="w-100 btn btn-outline-light">Login</a>
+                @if (Auth::user())
+                    <form action="{{url('/logout')}}" method="POST" class="">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-light" id="btn-logoutprofil" onclick="return confirm('are you sure?')"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                        <a href="" class="btn btn-outline-light"><i class="bi bi-person"></i></a>
+                    </form>
+                @else
+                    <a href="" class="w-100 btn btn-outline-light">Login</a>
+                @endif
             </div>
         </div>
         <div class="footer">

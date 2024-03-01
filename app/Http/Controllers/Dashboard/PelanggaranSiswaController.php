@@ -129,15 +129,16 @@ class PelanggaranSiswaController extends Controller
     public function show($id)
     {
         try {
-            $pelsis = PelanggaranSiswa::with('user')->with('pelanggaran')
-            ->where('is_deleted',false)->where('id',$id)->get();
+            $pelsis = PelanggaranSiswa::with('siswa.user','siswa.kelas','user','pelanggaran.kategori')
+            ->where('is_deleted',false)->find($id);
            
             if ($pelsis->count() == 0) {
                 throw new Exception();
             }
         } catch (Exception $ex) {
-            return redirect()->route('pelanggaransiswa.index')->with('err','gagal melihat data, terjadi kesalahan pada data');
+            return redirect()->route('pelanggaransiswa.index')->with('err','gagal melihat detail pelanggaran, terjadi kesalahan pada data');
         }
+        // return $pelsis;
         return view('dashboard.pelanggaran-siswa.show',compact('pelsis'));
     }
 

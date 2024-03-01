@@ -11,6 +11,9 @@
                 <div class="h5 ms-3">
                     SMKN 1 Labang Bangkalan
                 </div>
+                <div class="container">
+                    {{ Breadcrumbs::render() }}
+                </div>
             </div>
             <div class="col-3">
                 <img src="{{asset('/images/assets/vector1.png')}}" alt="" srcset="" class="img-fluid">
@@ -102,52 +105,54 @@
             </div>
         </div>
         <div class="">
-            @isset($pelsis)
-            <table class="table table-hover">
-                <thead>
-                    <tr class="">
-                        <th>No</th>
-                        <th class="">Nama Siswa</th>
-                        <th class="">Tanggal</th>
-                        <th class="">Pelanggaran</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($pelsis as $data)
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$data->siswa->user->fullname}}</td>
-                            <td>{{ \Carbon\Carbon::parse($data->tanggal)->format('l, d-M-Y') }}</td>
-                            <td>{{$data->pelanggaran->nama_pelanggaran}}</td>
-                            <td>
-                                <div class="dropdown" id="dropdownMore">
-                                    <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-three-dots-vertical"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                      <li>
-                                        <form action="{{ route('pelanggaransiswa.destroy', $data->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="dropdown-item text-danger" title="Hapus data" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i class="bi bi-trash3-fill mr-2"></i> Hapus</button>
-                                          </form>
-                                      </li>
-                                      <li><a href="{{route('pelanggaransiswa.edit', $data->id)}}" class="dropdown-item text-success" title="edit"><i class="bi bi-pencil mr-2"></i> Edit</a></li>
-                                      <li><a href="{{route('pelanggaransiswa.show', $data->id)}}" class="dropdown-item text-primary" title="detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
-                                    </ul>
-                                  </div>
-                            </td>
+            <div class="table-responsive">
+                @isset($pelsis)
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="">
+                            <th>No</th>
+                            <th class="">Nama Siswa</th>
+                            <th class="">Tanggal</th>
+                            <th class="">Pelanggaran</th>
+                            <th>Action</th>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center">--Tidak ada data--</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-            {{ $pelsis->links() ?? '' }}
-            @endisset
+                    </thead>
+                    <tbody>
+                        @forelse ($pelsis as $data)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$data->siswa->user->fullname}}</td>
+                                <td>{{ \Carbon\Carbon::parse($data->tanggal)->format('l, d-M-Y') }}</td>
+                                <td>{{$data->pelanggaran->nama_pelanggaran}}</td>
+                                <td>
+                                    <div class="dropdown" id="dropdownMore">
+                                        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                          <li>
+                                            <form action="{{ route('pelanggaransiswa.destroy', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger" title="Hapus data" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i class="bi bi-trash3-fill mr-2"></i> Hapus</button>
+                                              </form>
+                                          </li>
+                                          <li><a href="{{route('pelanggaransiswa.edit', $data->id)}}" class="dropdown-item text-success" title="edit"><i class="bi bi-pencil mr-2"></i> Edit</a></li>
+                                          <li><a href="{{route('pelanggaransiswa.show', $data->id)}}" class="dropdown-item text-primary" title="detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
+                                        </ul>
+                                      </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center">--Tidak ada data--</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+                {{ $pelsis->links() ?? '' }}
+                @endisset
+            </div>
         </div>
     </div>
 </div>

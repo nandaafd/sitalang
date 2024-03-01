@@ -1,5 +1,5 @@
 @extends('dashboard.layout.main')
 @section('content')
-    <div>hello</div>
+    <div>hello {{Auth::user()->fullname}}</div>
     
 @endsection

@@ -17,4 +17,7 @@ class Siswa extends Model
     public function pelanggaran(){
         return $this->hasMany(PelanggaranSiswa::class);
     }
+    public function kelas(){
+        return $this->belongsTo(Kelas::class);
+    }
 }
