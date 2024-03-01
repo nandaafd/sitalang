@@ -31,4 +31,6 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('masterpelanggaran', MasterPelanggaranController::class);
     Route::resource('pelanggaransiswa', PelanggaranSiswaController::class);
 
+
+
 });

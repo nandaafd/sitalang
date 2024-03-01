@@ -5,7 +5,7 @@
     <div class="h3">
         Master Data Pelanggaran
     </div>
-    <div class="container bg-light py-3 py-5 rounded px-4">
+    <div class="container bg-light py-4 rounded px-4">
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -23,19 +23,23 @@
                 <form action="" id="frmFilter" method="get">
                     <div class="row">
                         <div class="col">
-                            <input type="text" id="filterName" name="nama" class="form-control form-control-sm" value="{{$nama ?? ''}}" id="" placeholder="Cari nama pelanggaran..">
-                        </div>
-                        <div class="col">
-                            <select name="kategori_id" id="filterKategori" class="form-control form-control-sm">
-                                <option value="">--pilih kategori--</option>
-                                @foreach ($kategori as $item)
-                                    <option {{$kat == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-sm mr-1" type="submit">Cari</a>
-                            <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
+                            <ul>
+                                <li class="mr-2">
+                                    <input type="text" id="filterName" name="nama" class="form-control form-control-sm" value="{{$nama ?? ''}}" id="" placeholder="Cari nama pelanggaran..">
+                                </li>
+                                <li class="mr-2">
+                                    <select name="kategori_id" id="filterKategori" class="form-control form-control-sm">
+                                        <option value="">--pilih kategori--</option>
+                                        @foreach ($kategori as $item)
+                                            <option {{$kat == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </li>
+                                <li class="mr-2">
+                                    <button class="btn btn-primary btn-sm mr-1" type="submit">Cari</a>
+                                    <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </form>

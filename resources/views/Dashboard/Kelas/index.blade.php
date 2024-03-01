@@ -5,7 +5,7 @@
     <div class="h3">
         Master Data Kelas
     </div>
-    <div class="container bg-light py-3 py-5 rounded px-4">
+    <div class="container bg-light py-4 rounded px-4">
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -23,27 +23,32 @@
                 <form action="" method="get" id="frmFilter">
                     <div class="row">
                         <div class="col">
-                            <select name="jurusan" class="form-select form-select-sm" id="filterJurusan">
-                                <option id="default" value="">Pilih jurusan..</option>
-                                <option {{$jurusan=='TKJ' ? 'selected' : ''}} value="TKJ">TKJ / Teknik Komputer Jaringan</option>
-                                <option {{$jurusan=='TEI' ? 'selected' : ''}} value="TEI">TEI / Teknik Elektronika Industri</option>
-                                <option {{$jurusan=='RPL' ? 'selected' : ''}} value="RPL">RPL / Rekayasa Perangkat Lunak</option>
-                                <option {{$jurusan=='AK' ? 'selected' : ''}} value="AK">AK / Akuntansi</option>
-                                <option {{$jurusan=='TBSM' ? 'selected' : ''}} value="TBSM">TBSM / Teknik Bisnis Sepeda Motor</option>
-                                <option {{$jurusan=='TKR' ? 'selected' : ''}} value="TKR">TKR / Teknik Kendaraan Ringan</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select name="kelas" class="form-select form-select-sm" id="filterKelas">
-                                <option value="">Pilih kelas..</option>
-                                <option {{$kls=='x' ? 'selected' : ''}} value="x">X / Sepuluh</option>
-                                <option {{$kls=='xi' ? 'selected' : ''}} value="xi">XI / Sebelas</option>
-                                <option {{$kls=='xii' ? 'selected' : ''}} value="xii">XII / Dua Belas</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-sm mr-1" type="submit">Cari</a>
-                            <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
+                            <ul>
+                                <li class="mr-2">
+                                    <select name="jurusan" class="form-select form-select-sm" id="filterJurusan">
+                                        <option id="default" value="">Pilih jurusan..</option>
+                                        <option {{$jurusan=='TKJ' ? 'selected' : ''}} value="TKJ">TKJ / Teknik Komputer Jaringan</option>
+                                        <option {{$jurusan=='TEI' ? 'selected' : ''}} value="TEI">TEI / Teknik Elektronika Industri</option>
+                                        <option {{$jurusan=='RPL' ? 'selected' : ''}} value="RPL">RPL / Rekayasa Perangkat Lunak</option>
+                                        <option {{$jurusan=='AK' ? 'selected' : ''}} value="AK">AK / Akuntansi</option>
+                                        <option {{$jurusan=='TBSM' ? 'selected' : ''}} value="TBSM">TBSM / Teknik Bisnis Sepeda Motor</option>
+                                        <option {{$jurusan=='TKR' ? 'selected' : ''}} value="TKR">TKR / Teknik Kendaraan Ringan</option>
+                                    </select>
+                                </li>
+                                <li class="mr-2">
+                                    <select name="kelas" class="form-select form-select-sm" id="filterKelas">
+                                        <option value="">Pilih kelas..</option>
+                                        <option {{$kls=='x' ? 'selected' : ''}} value="x">X / Sepuluh</option>
+                                        <option {{$kls=='xi' ? 'selected' : ''}} value="xi">XI / Sebelas</option>
+                                        <option {{$kls=='xii' ? 'selected' : ''}} value="xii">XII / Dua Belas</option>
+                                    </select>
+                                </li>
+                                <li class="mr-2">
+                                    <button class="btn btn-primary btn-sm mr-1" type="submit">Cari</a>
+                                        <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
+                                </li>
+                            </ul>
+                            
                         </div>
                     </div>
                 </form>

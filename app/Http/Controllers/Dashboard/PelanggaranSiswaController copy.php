@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Kategori;
 use App\Models\MasterPelanggaran;
 use App\Models\PelanggaranSiswa;
 use App\Models\Sanksi;
@@ -12,7 +11,6 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PelanggaranSiswaController extends Controller
@@ -20,62 +18,67 @@ class PelanggaranSiswaController extends Controller
     public function index(Request $request)
     {
         try {
-            $nama = $request->nama;
-            $kat = $request->kategori_id;
-            $pel = $request->pelanggaran_id;
-            $kategori = Kategori::where('is_deleted',false)->get();
-            $pelanggaran = MasterPelanggaran::where('is_deleted',false)->get();
-            $query = PelanggaranSiswa::with('siswa','user', 'pelanggaran')
-                ->where('is_deleted', false)
-                ->where('pelanggaran_id','LIKE', '%'.$pel.'%')
-                ->whereHas('siswa.user', function ($query) use ($nama) {
-                    $query->where('fullname', 'LIKE', '%'.$nama.'%');
-                })
-                ->whereHas('pelanggaran', function ($query) use ($kat) {
-                    $query->where('kategori_id', 'LIKE', '%'.$kat.'%');
-                })
-                ->orderBy('tanggal', 'desc');
-            
-
+            $pelanggaran = $pelsis = PelanggaranSiswa::with('user')->with('pelanggaran')
+            ->where('is_deleted',false)->orderBy('tanggal','desc')->paginate(10);
             if ($request->semua) {
-                $pelsis = $query->paginate(10);
+                $pelsis = PelanggaranSiswa::with('user')->with('pelanggaran')
+                ->where('is_deleted',false)->orderBy('tanggal','desc')->paginate(10);
+                if ($pelsis->isEmpty()) {
+                    throw new Exception();
+                }
             }
             elseif ($request->this_year) {
                 $oneYearAgo = Carbon::now()->subYear();
-                $query->where('tanggal', '>=', $oneYearAgo);
+                $pelsis = PelanggaranSiswa::with('user', 'pelanggaran')
+                    ->where('is_deleted', false)
+                    ->where('tanggal', '>=', $oneYearAgo)
+                    ->orderBy('tanggal','desc')->paginate(10);
             }
             elseif ($request->this_month) {
                 $startDate = Carbon::now()->startOfMonth();
-                $query->where('tanggal', '>=', $startDate);
+                $pelsis = PelanggaranSiswa::with('user', 'pelanggaran')
+                ->where('is_deleted', false)
+                ->where('tanggal', '>=', $startDate)
+                ->orderBy('tanggal','desc')->paginate(10);
             }   
             elseif ($request->other === 'Bulan lalu') {
                 $startDate = Carbon::now()->subMonth()->startOfMonth();
                 $endDate = Carbon::now()->subMonth()->endOfMonth();
-                $query->whereBetween('tanggal', [$startDate, $endDate]);
+
+                $pelsis = PelanggaranSiswa::with('user', 'pelanggaran')
+                ->where('is_deleted', false)
+                ->whereBetween('tanggal', [$startDate, $endDate])
+                ->orderBy('tanggal','desc')->paginate(10);
             } 
             elseif ($request->other === 'Minggu ini') {
                 $startDate = Carbon::now()->startOfWeek(); 
                 $endDate = Carbon::now()->endOfWeek();
-                $query->whereBetween('tanggal', [$startDate, $endDate]);
+
+                $pelsis = PelanggaranSiswa::with('user', 'pelanggaran')
+                ->where('is_deleted', false)
+                ->whereBetween('tanggal', [$startDate, $endDate])
+                ->orderBy('tanggal','desc')->paginate(10);
             }
             elseif ($request->other === 'Tahun lalu') {
                 $startDate = Carbon::now()->subYear()->startOfYear(); 
                 $endDate = Carbon::now()->subYear()->endOfYear();
-                $query->whereBetween('tanggal', [$startDate, $endDate]);
+
+                $pelsis = PelanggaranSiswa::with('user', 'pelanggaran')
+                ->where('is_deleted', false)
+                ->whereBetween('tanggal', [$startDate, $endDate])
+                ->orderBy('tanggal','desc')->paginate(10);
             }
             else {
-                $pelsis = $query->paginate(10);
+                $pelsis = PelanggaranSiswa::with('user')->with('pelanggaran')
+                ->where('is_deleted',false)->orderBy('tanggal','desc')->paginate(10);
             }
-
-            $pelsis = $query->paginate(10);
-
             if ($pelsis->isEmpty()) {
                 throw new Exception();
             }
         } catch (Exception $ex) {
             $pelsis = new LengthAwarePaginator([], 0, 10);
         }
-        return view('dashboard.pelanggaran-siswa.index', compact('pelsis','kategori','kat','pelanggaran','pel','nama'));
+        return view('dashboard.pelanggaran-siswa.index', compact('pelsis'));
         
     }
     
