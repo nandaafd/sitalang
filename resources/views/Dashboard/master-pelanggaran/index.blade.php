@@ -2,8 +2,23 @@
 @section('content')
     
 <div>
-    <div class="h3">
-        Master Data Pelanggaran
+    <div class="container mb-3 bg-light rounded">
+        <div class="row" id="contentHeader">
+            <div class="col-9">
+                <div class="h3 mt-3 ms-3">
+                    Master Pelanggaran
+                </div>
+                <div class="h5 ms-3">
+                    SMKN 1 Labang Bangkalan
+                </div>
+                <div class="container">
+                    {{ Breadcrumbs::render() }}
+                </div>
+            </div>
+            <div class="col-3">
+                <img src="{{asset('/images/assets/vector1.png')}}" alt="" srcset="" class="img-fluid">
+            </div>
+        </div>
     </div>
     <div class="container bg-light py-4 rounded px-4">
         @if(session('success'))
@@ -45,7 +60,7 @@
                 </form>
             </div>
             <div class="col-2 text-end">
-                <a class="btn btn-primary" href="{{route('masterpelanggaran.create')}}" title="Tambah data sanksi"><i class="bi bi-plus"></i></a>
+                <a class="btn btn-primary" href="{{route('masterpelanggaran.create')}}" title="Tambah data master pelanggaran"><i class="bi bi-plus"></i></a>
             </div>
         </div>
         <div class="">

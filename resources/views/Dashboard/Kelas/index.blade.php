@@ -2,8 +2,23 @@
 @section('content')
     
 <div>
-    <div class="h3">
-        Master Data Kelas
+    <div class="container mb-3 bg-light rounded">
+        <div class="row" id="contentHeader">
+            <div class="col-9">
+                <div class="h3 mt-3 ms-3">
+                    Data Kelas
+                </div>
+                <div class="h5 ms-3">
+                    SMKN 1 Labang Bangkalan
+                </div>
+                <div class="container">
+                    {{ Breadcrumbs::render() }}
+                </div>
+            </div>
+            <div class="col-3">
+                <img src="{{asset('/images/assets/vector5.jpg')}}" alt="" srcset="" class="img-fluid">
+            </div>
+        </div>
     </div>
     <div class="container bg-light py-4 rounded px-4">
         @if(session('success'))
