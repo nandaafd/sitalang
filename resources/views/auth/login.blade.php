@@ -5,7 +5,7 @@
         <div class="col-sm-6" id="left">
             <img class="my-4 mx-4" src="{{asset('images/logo1.png')}}" alt="">
             <h2 class="mx-4">Halo, Selamat Datang Kembali</h2>
-            <h5 id="text" class="mx-4 mb-5">Ayo masuk ke siprakerin sekarang juga!</h5>
+            <h5 id="text" class="mx-4 mb-5">Ayo masuk ke Sitalang sekarang juga!</h5>
            <h3 class="mx-4 mb-2">Login</h3>
             <form action="/login" method="POST">
                 @csrf

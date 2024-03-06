@@ -48,7 +48,7 @@
                         <a href="" class="btn btn-outline-light"><i class="bi bi-person"></i></a>
                     </form>
                 @else
-                    <a href="" class="w-100 btn btn-outline-light">Login</a>
+                    <a href="{{url('/login')}}" class="w-100 btn btn-outline-light">Login</a>
                 @endif
             </div>
         </div>

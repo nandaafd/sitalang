@@ -15,9 +15,6 @@ body{
   
   /* Style the tab buttons */
   .tab button {
-    background-color: #ccc;
-    border: none;
-    color: black;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -25,7 +22,8 @@ body{
   
   /* Style the active tab button */
   .tab button.active {
-    background-color: #ddd;
+    background-color: rgb(17, 0, 255);
+    color: white;
   }
   
   /* Style the tab content */
@@ -79,6 +77,34 @@ a:hover{
 #show-password{
   margin-left: 30px;
 }
+
+.otp-field {
+  display: flex;
+}
+.otp-field input {
+  width: 50px;
+  font-size: 32px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 2px;
+  border: 2px solid #a8a8a8;
+  font-weight: bold;
+  outline: none;
+  color: black;
+  transition: all 0.1s;
+}
+.otp-field input:focus {
+  border: 2px solid #a527ff;
+  box-shadow: 0 0 2px 2px #a527ff6a;
+}
+.disabled {
+  opacity: 0.5;
+}
+.space {
+  margin-right: 1rem !important;
+}
+
 @media screen and (max-width : 500px) {
   #img-left{
     display: none;
