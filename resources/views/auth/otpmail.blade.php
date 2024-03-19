@@ -1,1 +1,1 @@
-<div>kode otp anda adalah </div>
+<div>kode otp anda adalah {{$otp}}</div>

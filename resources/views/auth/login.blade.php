@@ -3,8 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-sm-6" id="left">
-            <img class="my-4 mx-4" src="{{asset('images/logo1.png')}}" alt="">
-            <h2 class="mx-4">Halo, Selamat Datang Kembali</h2>
+            {{-- <img class="my-4 mx-4" src="{{asset('images/logo1.png')}}" alt=""> --}}
+            <h1 class="mx-4 mt-5" id="tittleAuth">Sitalang</h1>
+            <h3 class="mx-4">Halo, Selamat Datang Kembali</h3>
             <h5 id="text" class="mx-4 mb-5">Ayo masuk ke Sitalang sekarang juga!</h5>
            <h3 class="mx-4 mb-2">Login</h3>
             <form action="/login" method="POST">
@@ -16,9 +17,11 @@
                     <label for="email-login" class="mx-4">Username/Email</label>
                 </div>
                 <div class="form-floating mt-2">
-                    <input type="password" class="form-control mx-4" id="password-login" name="password" placeholder="Password" required>
+                    <input type="password" class="form-control mx-4 mb-2" id="password-login" name="password" placeholder="Password" required>
                     <label for="password-login" class="mx-4">Password</label>
-                    {{-- <input class="my-3 mb-4" type="checkbox" onclick="showPassword()" id="show-password"> Show Password --}}
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="http://" class="text-primary mx-4">Lupa password</a>
                 </div>
                 @if (session()->has('loginError'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -30,8 +33,8 @@
                 <p id="login-btn" class="text-center my-2">Belum punya akun? <a href="{{url('/register')}}">Buat akun</a></p>
                 </form>
         </div>
-        <div class="col-sm-6" id="right">
-            <img id="img-left" class="start-0" src="{{asset('images/kanan1.png')}}" alt="">
+        <div class="col-sm-6 d-flex justify-content-center align-items-center" id="right" style="height: 100vh">
+            <img id="img-left" class="img-fluid" src="{{asset('images/assets/vectorstudent.png')}}" alt="">
         </div>
     </div>
 @endsection

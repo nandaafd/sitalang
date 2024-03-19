@@ -13,9 +13,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('user');
-            $table->string('alamat');
-            $table->string('no_telp');
-            $table->string('foto');
+            $table->string('nip')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('foto')->nullable();
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });

@@ -60,18 +60,7 @@ function handleOnPasteOtp(e) {
     }
 }
 
-function submit() {
-    console.log("Submitting...");
-    // 👇 Entered OTP
-    let otp = "";
-    inputs.forEach((input) => {
-        otp += input.value;
-        input.disabled = true;
-        input.classList.add("disabled");
-    });
-    console.log(otp);
-    // 👉 Call API below
-}
+
 
 //--timer otp--
 $("#resendOtp").click(function () {
@@ -112,6 +101,7 @@ $("#resendOtp").click(function () {
         resendButton.addClass("disabled");
         startTimer(time); // Memulai timer
     });
+    ajaxData();
 });
 
 let timerOtp = false;

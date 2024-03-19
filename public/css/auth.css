@@ -47,6 +47,9 @@ a{
 a:hover{
   color: black;
 }
+.invalid-feedback{
+  position: absolute;
+}
 #text{
     color: rgb(158, 158, 158);
     font-size: 18px;
@@ -58,8 +61,6 @@ a:hover{
 #img-left{
     /* margin-left: -10px; */
     overflow: hidden;
-    height: 100%;
-    
 }
 #pilih-kelas{
     font-size: 16px;
@@ -101,8 +102,72 @@ a:hover{
 .disabled {
   opacity: 0.5;
 }
+
 .space {
   margin-right: 1rem !important;
+}
+#right{
+  background-color: #0064D3;
+}
+#tittleAuth{
+  color: #0064D3;
+}
+.radio-section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+.radio-item [type="radio"] {
+	display: none;
+}
+.radio-item + .radio-item {
+	margin-top: 15px;
+}
+.radio-item label {
+	display: block;
+	padding: 20px 60px;
+	border: 2px solid rgb(211, 211, 211);
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: 400;
+	min-width: 250px;
+	white-space: nowrap;
+	position: relative;
+	transition: 0.4s ease-in-out 0s;
+}
+.radio-item label:after,
+.radio-item label:before {
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+}
+.radio-item label:after {
+	height: 19px;
+	width: 19px;
+	border: 2px solid #524eee;
+	left: 19px;
+	top: calc(50% - 12px);
+}
+.radio-item label:before {
+	background: #524eee;
+	height: 20px;
+	width: 20px;
+	left: 19px;
+	top: calc(50% - 12px);
+	transform: scale(5);
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.4s ease-in-out 0s;
+}
+.radio-item [type="radio"]:checked ~ label {
+	border-color: #524eee;
+}
+.radio-item [type="radio"]:checked ~ label::before {
+	opacity: 1;
+	visibility: visible;
+	transform: scale(1);
 }
 
 @media screen and (max-width : 500px) {

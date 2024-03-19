@@ -27,10 +27,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register-store', [RegisterController::class, 'store'])->name('register-store');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('/send-otp', [OtpController::class,'sendOtp'])->name('sendOtp');
+Route::post('/send-otp/{email}', [OtpController::class,'createOtp'])->name('sendOtp');
+Route::post('/verif-otp/{otp}/{email}', [OtpController::class,'verifyOtp'])->name('verifOtp');
 Route::prefix('dashboard')->group(function () {
     Route::resource('/', DashboardController::class);
     Route::resource('admin', AdminController::class);

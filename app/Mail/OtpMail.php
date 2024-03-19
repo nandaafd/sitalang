@@ -13,13 +13,13 @@ use PragmaRX\Google2FA\Exceptions\Contracts\Google2FA;
 class OtpMail extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $google2fa;
+    public $otp;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($otp)
     {
-        // $this->google2fa = $google2fa;
+        $this->otp = $otp;
     }
 
     /**
@@ -35,14 +35,18 @@ class OtpMail extends Mailable
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    // public function content(): Content
+    // {
+    //     return new Content(
+    //         view: 'auth.otpmail',
+    //     );
+    // }
+    public function build()
     {
-        // $otp = $this->google2fa->generateSecretKey();
-        return new Content(
-            view: 'auth.otpmail',
-        );
+        return $this->view('auth.otpmail')->with([
+            'otp' => $this->otp,
+        ]);
     }
-
     /**
      * Get the attachments for the message.
      *
