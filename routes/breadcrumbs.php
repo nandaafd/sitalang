@@ -77,3 +77,21 @@ Breadcrumbs::for('masterpelanggaran.edit', function ($trail) {
     $trail->parent('masterpelanggaran.index');
     $trail->push('Edit', url('dashboard/masterpelanggaran/{id}/edit'));
 });
+
+// master admin
+Breadcrumbs::for('admin.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Data Admin', route('admin.index'));
+});
+Breadcrumbs::for('admin.create', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Create', route('admin.create'));
+});
+Breadcrumbs::for('admin.show', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Detail', url('dashboard/admin/{id}'));
+});
+Breadcrumbs::for('admin.edit', function ($trail) {
+    $trail->parent('admin.index');
+    $trail->push('Edit', url('dashboard/admin/{id}/edit'));
+});

@@ -69,7 +69,7 @@ class KelasController extends Controller
         try {
             $data = Kelas::find($id);
         } catch (Exception $ex) {
-            $kelas =  new LengthAwarePaginator([], 0, 10);
+            $data =  new LengthAwarePaginator([], 0, 10);
             session()->flash('err', 'gagal tersambung dengan database, server database tidak bisa dihubungi');
             return view('dashboard.kelas.edit', compact('data'));
         }

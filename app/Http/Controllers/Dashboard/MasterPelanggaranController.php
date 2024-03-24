@@ -21,7 +21,7 @@ class MasterPelanggaranController extends Controller
             $pelanggaran = MasterPelanggaran::with('kategori')->where('is_deleted',false)->
             where('nama_pelanggaran','like','%'.$nama.'%')->where('kategori_id','like','%'.$kat.'%')->paginate(10);
         } catch (Exception $ex) {
-            $pelanggaran = new LengthAwarePaginator([], 0, 10);;
+            $pelanggaran = new LengthAwarePaginator([], 0, 10);
             session()->flash('err', 'gagal tersambung dengan database, server database tidak bisa dihubungi');
         }
         return view('dashboard.master-pelanggaran.index', compact('pelanggaran','nama','kat','kategori'));

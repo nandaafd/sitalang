@@ -15,13 +15,13 @@
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="bi bi-people mr-3"></i> User</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="#">Admin</a>
+                        <a href="{{route('admin.index')}}">Admin</a>
                     </li>
                     <li>
-                        <a href="#">Guru</a>
+                        <a href="{{route('guru.index')}}">Guru</a>
                     </li>
                     <li>
-                        <a href="#">Siswa</a>
+                        <a href="{{route('siswa.index')}}">Siswa</a>
                     </li>
                 </ul>
             </li>
@@ -44,7 +44,7 @@
                 @if (Auth::user())
                     <form action="{{url('/logout')}}" method="POST" class="">
                         @csrf
-                        <button type="submit" class="btn btn-outline-light" id="btn-logoutprofil" onclick="return confirm('are you sure?')"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                        <button type="submit" class="btn btn-outline-light w-75" id="btn-logoutprofil" onclick="return confirm('are you sure?')"><i class="bi bi-box-arrow-right"></i> Logout</button>
                         <a href="" class="btn btn-outline-light"><i class="bi bi-person"></i></a>
                     </form>
                 @else

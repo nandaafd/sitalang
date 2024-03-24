@@ -29,7 +29,9 @@
 <section class="service" id="service"> 
 @yield('content')
 </section>
-
+@component('components.modal_otp')
+    @include('components.modal_otp')
+@endcomponent
 <footer>
     {{-- @include('footer.footer') --}}
 </footer>
