@@ -6,7 +6,7 @@
         <div class="row" id="contentHeader">
             <div class="col-9">
                 <div class="h3 mt-3 ms-3">
-                    Data Admin
+                    Data Guru
                 </div>
                 <div class="h5 ms-3">
                     SMKN 1 Labang Bangkalan
@@ -38,7 +38,7 @@
                 <form action="" id="frmFilter" method="get">
                     <ul id="filterField">
                         <li class="mr-2">
-                            <input type="text" id="filterName" name="nama" class="form-control form-control-sm" value="{{$nama ?? ''}}" id="" placeholder="Cari nama admin..">
+                            <input type="text" id="filterName" name="nama" class="form-control form-control-sm" value="{{$nama ?? ''}}" id="" placeholder="Cari nama guru..">
                         </li>
                         <li class="mr-2">
                             <button class="btn btn-primary btn-sm" type="submit">Cari</a>
@@ -50,42 +50,40 @@
                 </form>
             </div>
             <div class="col-2 text-end">
-                <a class="btn btn-primary" href="{{route('admin.create')}}" title="Tambah data pelanggaran siswa"><i class="bi bi-plus"></i></a>
+                <a class="btn btn-primary" href="{{route('guru.create')}}" title="Tambah data pelanggaran siswa"><i class="bi bi-plus"></i></a>
             </div>
         </div>
         
         <div class="">
             <div class="table-responsive">
-                @isset($admin)
+                @isset($guru)
                 <table class="table table-hover">
                     <thead>
                         <tr class="">
                             <th>No</th>
-                            <th class="">Nama Admin</th>
+                            <th class="">Nama</th>
                             <th class="">Email</th>
-                            <th class="">Code</th>
+                            <th class="">Nip</th>
                             <th class="">Terblokir</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($admin as $data)
+                        @forelse ($guru as $data)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$data->user->fullname}}</td>
                                 <td>{{$data->user->email}}</td>
-                                <td>{{$data->code}}</td>
+                                <td>{{$data->nip}}</td>
                                 <td class="text-center">
-                                    @if($data->user->id != Auth::id())
-                                        <form action="{{route('block',$data->user_id)}}" method="post" id="formBlokir-{{$data->id}}">
-                                            @csrf @method('put')
-                                            <div class="form-check form-switch">
-                                                <input type="hidden" name="user_id" value="{{$data->user_id}}">
-                                                <input class="form-check-input flexSwitchCheckChecked-{{$data->id}}" name="is_blocked" value="{{$data->user->is_blocked}}" onchange="toggleConfirmation({{$data->id}}, '{{ $data->user->fullname}}')" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{$data->user->is_blocked == true ? 'checked':''}}>
-                                                <label class="form-check-label" for="flexSwitchCheckChecked">{{$data->user->is_blocked == true ? 'Yes':'No'}}</label>
-                                            </div>
-                                        </form>
-                                    @endif
+                                    <form action="{{route('block',$data->user_id)}}" method="post" id="formBlokir-{{$data->id}}">
+                                        @csrf @method('put')
+                                        <div class="form-check form-switch">
+                                            <input type="hidden" name="user_id" value="{{$data->user_id}}">
+                                            <input class="form-check-input flexSwitchCheckChecked-{{$data->id}}" name="is_blocked" value="{{$data->user->is_blocked}}" onchange="toggleConfirmation({{$data->id}}, '{{ $data->user->fullname}}')" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{$data->user->is_blocked == true ? 'checked':''}}>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">{{$data->user->is_blocked == true ? 'Yes':'No'}}</label>
+                                        </div>
+                                    </form>
                                 </td>
                                 <td>
                                     <div class="dropdown" id="dropdownMore">
@@ -93,9 +91,17 @@
                                             <i class="bi bi-three-dots-vertical"></i>
                                         </button>
                                         <ul class="dropdown-menu">
-                                          <li><a href="{{route('admin.edit', $data->id)}}" class="dropdown-item text-success" title="edit"><i class="bi bi-pencil mr-2"></i> Edit</a></li>
+                                          <li>
+                                            <form action="{{ route('guru.destroy', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger" title="Hapus data" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i class="bi bi-trash3-fill mr-2"></i> Hapus</button>
+                                              </form>
+                                          </li>
+                                          <li><a href="{{route('guru.edit', $data->id)}}" class="dropdown-item text-success" title="edit"><i class="bi bi-pencil mr-2"></i> Edit</a></li>
+                                          <li><a href="{{route('guru.show', $data->id)}}" class="dropdown-item text-primary" title="detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
                                         </ul>
-                                      </div>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -105,7 +111,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                {{ $admin->links() ?? '' }}
+                {{ $guru->links() ?? '' }}
                 @endisset
             </div>
         </div>
@@ -123,6 +129,7 @@
             }, 300);
         })
     })
+
     function toggleConfirmation(id, name) {
         var isBlocked = $('.flexSwitchCheckChecked-'+id).prop('checked');
         var message = isBlocked ? "Apakah kamu yakin ingin memblokir "+name+"?" : "Apakah kamu yakin akan membuka blokir "+name+"?";

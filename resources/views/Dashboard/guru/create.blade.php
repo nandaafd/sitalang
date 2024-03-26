@@ -5,7 +5,7 @@
         <div class="row" id="contentHeader">
             <div class="col-9">
                 <div class="h3 mt-3 ms-3">
-                    Tambah Data Admin
+                    Tambah Data Guru
                 </div>
                 <div class="h5 ms-3">
                     SMKN 1 Labang Bangkalan
@@ -32,12 +32,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <form action="{{route('admin.store')}}" method="post" id="formAddAdmin">
+        <form action="{{route('guru.store')}}" method="post" id="formAddGuru">
             @method('post')
             @csrf
             <div class="mb-3">
                 <label for="range_poin" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control @error('fullname') is-invalid @enderror" value="{{old('fullname')}}" name="fullname" placeholder="Tuliskan nama admin..">
+                <input type="text" class="form-control @error('fullname') is-invalid @enderror" value="{{old('fullname')}}" name="fullname" placeholder="Tuliskan nama lengkap..">
                 @error('fullname')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -48,6 +48,33 @@
                 <label for="poin" class="form-label">Nickname</label>
                 <input type="text" class="form-control @error('nickname') is-invalid @enderror" value="{{old('nickname')}}" name="nickname" placeholder="Tuliskan nickname disini..">
                 @error('nickname')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="poin" class="form-label">NIP</label>
+                <input type="number" class="form-control @error('nip') is-invalid @enderror" value="{{old('nip')}}" name="nip" placeholder="Tuliskan nip disini..">
+                @error('nip')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="alamat" class="form-label">Alamat</label>
+                <input type="text" class="form-control @error('alamat') is-invalid @enderror" value="{{old('alamat')}}" name="alamat" placeholder="Tuliskan alamat disini..">
+                @error('alamat')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="poin" class="form-label">No Telpon</label>
+                <input type="number" class="form-control @error('no_telp') is-invalid @enderror" value="{{old('no_telp')}}" name="no_telp" placeholder="Tuliskan no telp disini..">
+                @error('no_telp')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -80,16 +107,19 @@
                     </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary btnAddAdmin btnSubmitRegister"><i class="bi bi-save"></i> Tambah</button>
+            <button type="submit" class="btn btn-primary btnAddGuru btnSubmitRegister"><i class="bi bi-save"></i> Tambah</button>
         </form>
     </div>
 </div>
 <script>
-    $("#formAddAdmin").validate({ 
+    $("#formAddGuru").validate({ 
         errorClass: "text-danger is-invalid",
         rules: {
             fullname :{required:true, minlength:3},
             nickname :{required:true, minlength:3},
+            nip :{required:true, minlength:3},
+            alamat :{required:true, minlength:3},
+            no_telp :{required:true, minlength:3},
             email:{email:true, required:true},
             password:{required:true, strongPassword:true},
             confirm_password:{required:true, equalTo:"#password1"}
@@ -97,6 +127,9 @@
         messages: {
             fullname :{required:"nama lengkap wajib diisi", minlength:"panjang karakter minimal 3"},
             nickname :{required:"nama panggilan wajib diisi", minlength:"panjang karakter minimal 3"},
+            nip :{required:"nip wajib diisi", minlength:"panjang karakter minimal 3"},
+            alamat :{required:"alamat wajib diisi", minlength:"panjang karakter minimal 3"},
+            no_telp :{required:"no telpon wajib diisi", minlength:"panjang karakter minimal 3"},
             email:{email:"email harus valid", required:"email wajib diisi"},
             password:{required:"password wajib diisi"},
             confirm_password:{required:"confirm password wajib diisi", equalTo:"password tidak sama"}
@@ -139,10 +172,10 @@
     let email;
     var form;
     var token;
-    $(".btnAddAdmin").click(function(e){
+    $(".btnAddGuru").click(function(e){
         e.preventDefault();
         form = $(this).closest('form');
-        if ($("#formAddAdmin").valid()) {
+        if ($("#formAddGuru").valid()) {
             ajaxData();
             $("#modalOtp").modal("show");
         }
@@ -193,7 +226,7 @@
             dataType:'json',
             success:function (response) {
                 if (response.success) {
-                    $("#formAddAdmin").submit();
+                    $("#formAddGuru").submit();
                     swal("Good job!", "Verifikasi kode otp berhasil", "success");
                 }
                 else{

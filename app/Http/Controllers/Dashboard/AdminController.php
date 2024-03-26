@@ -26,7 +26,7 @@ class AdminController extends Controller
             session()->flash('err', 'gagal tersambung dengan database, server database tidak bisa dihubungi');
         }
         
-        return view("dashboard.admin.index", compact("admin"));
+        return view("dashboard.admin.index", compact("admin","nama"));
     }
 
     

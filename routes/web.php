@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\MasterPelanggaranController;
 use App\Http\Controllers\Dashboard\PelanggaranSiswaController;
 use App\Http\Controllers\Dashboard\SanksiController;
 use App\Http\Controllers\Dashboard\SiswaController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Models\Sanksi;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +36,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::post('/send-otp/{email}', [OtpController::class,'createOtp'])->name('sendOtp');
 Route::post('/verif-otp/{otp}/{email}', [OtpController::class,'verifyOtp'])->name('verifOtp');
-
+Route::put('/block',[UserController::class,'block'])->name('block');
 
 Route::prefix('dashboard')->group(function () {
     Route::resource('/', DashboardController::class);

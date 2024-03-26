@@ -24,7 +24,7 @@
                     <a href="http://" class="text-primary mx-4">Lupa password</a>
                 </div>
                 @if (session()->has('loginError'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="alert alert-danger alert-dismissible fade show mx-2" role="alert">
                         {{ session('loginError') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>

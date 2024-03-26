@@ -95,3 +95,21 @@ Breadcrumbs::for('admin.edit', function ($trail) {
     $trail->parent('admin.index');
     $trail->push('Edit', url('dashboard/admin/{id}/edit'));
 });
+
+//master guru
+Breadcrumbs::for('guru.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Data Guru', route('guru.index'));
+});
+Breadcrumbs::for('guru.create', function ($trail) {
+    $trail->parent('guru.index');
+    $trail->push('Create', route('guru.create'));
+});
+Breadcrumbs::for('guru.show', function ($trail) {
+    $trail->parent('guru.index');
+    $trail->push('Detail', url('dashboard/guru/{id}'));
+});
+Breadcrumbs::for('guru.edit', function ($trail) {
+    $trail->parent('guru.index');
+    $trail->push('Edit', url('dashboard/guru/{id}/edit'));
+});
