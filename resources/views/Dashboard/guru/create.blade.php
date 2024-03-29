@@ -107,7 +107,7 @@
                     </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary btnAddGuru btnSubmitRegister"><i class="bi bi-save"></i> Tambah</button>
+            <button type="submit" class="btn btn-primary btnAddGuru btnSubmitRegister"><i class="bi bi-save"></i> Buat Akun</button>
         </form>
     </div>
 </div>

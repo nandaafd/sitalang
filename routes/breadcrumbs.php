@@ -113,3 +113,21 @@ Breadcrumbs::for('guru.edit', function ($trail) {
     $trail->parent('guru.index');
     $trail->push('Edit', url('dashboard/guru/{id}/edit'));
 });
+
+//master siswa
+Breadcrumbs::for('siswa.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Data Siswa', route('siswa.index'));
+});
+Breadcrumbs::for('siswa.create', function ($trail) {
+    $trail->parent('siswa.index');
+    $trail->push('Create', route('siswa.create'));
+});
+Breadcrumbs::for('siswa.show', function ($trail) {
+    $trail->parent('siswa.index');
+    $trail->push('Detail', url('dashboard/siswa/{id}'));
+});
+Breadcrumbs::for('siswa.edit', function ($trail) {
+    $trail->parent('siswa.index');
+    $trail->push('Edit', url('dashboard/siswa/{id}/edit'));
+});

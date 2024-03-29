@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use App\Models\Role;
+use App\Models\Token;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class GuruController extends Controller
@@ -39,33 +42,43 @@ class GuruController extends Controller
         try {
             $role = Role::where('name','guru')->first();
             if ($role) {
-                $validator = Validator::make($request->all(),[
-                    'fullname'=>'required',
-                    'nickname'=>'required',
-                    'nip'=>'required',
-                    'alamat'=>'required',
-                    'no_telp'=>'required',
-                    'email'=>'required',
-                    'password'=>'required',
-                    'confirm_password'=>'required'
-                ]);
-                if (!$validator->fails()) {
-                    $user = User::create([
-                        'fullname'=>$request->fullname,
-                        'nickname'=>$request->nickname,
-                        'email'=>$request->email,
-                        'password'=>bcrypt($request->password),
-                        'role_id'=>$role->id,
+                if ($request->password === $request->confirm_password) {
+                    $validator = Validator::make($request->all(),[
+                        'fullname'=>'required',
+                        'nickname'=>'required',
+                        'nip'=>'required',
+                        'alamat'=>'required',
+                        'no_telp'=>'required',
+                        'email'=>'required',
+                        'password'=>'required',
+                        'confirm_password'=>'required'
                     ]);
-                    $guru = Guru::create([
-                        'user_id'=>$user->id,
-                        'nip'=>$request->nip,
-                        'alamat'=>$request->alamat,
-                        'no_telp'=>$request->no_telp,
-                    ]);
+                    if (!$validator->fails()) {
+                        $user = User::create([
+                            'fullname'=>$request->fullname,
+                            'nickname'=>$request->nickname,
+                            'email'=>$request->email,
+                            'password'=>bcrypt($request->password),
+                            'role_id'=>$role->id,
+                        ]);
+                        $guru = Guru::create([
+                            'user_id'=>$user->id,
+                            'nip'=>$request->nip,
+                            'alamat'=>$request->alamat,
+                            'no_telp'=>$request->no_telp,
+                        ]);
+                        $token = Token::where('email',$request->email)->latest()->update([
+                            'is_expired'=>true,
+                            'updated_at'=>Date::now(),
+                            'is_deleted'=>false
+                        ]);
+                    }
+                    else {
+                        return redirect()->back()->withErrors($validator)->withInput();
+                    }
                 }
-                else {
-                    return redirect()->back()->withErrors($validator)->withInput();
+                else{
+                    throw new Exception("Gagal membuat akun, password tidak sama", 1);
                 }
             }
             else{
@@ -143,6 +156,7 @@ class GuruController extends Controller
         try {
             $guru = Guru::findOrFail($id);
             if ($guru) {
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
                 $guru->delete();
                 $user = User::where('id',$guru->user_id)->delete();
             }

@@ -5,7 +5,7 @@
         <div class="row" id="contentHeader">
             <div class="col-9">
                 <div class="h3 mt-3 ms-3">
-                    Tambah Data Siswa
+                    Edit Data Siswa
                 </div>
                 <div class="h5 ms-3">
                     SMKN 1 Labang Bangkalan
@@ -32,25 +32,25 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <form action="{{route('siswa.store')}}" method="post" id="formAddSiswa">
-            @method('post')
+        <form action="{{route('siswa.update',$data->id)}}" method="post" id="formAddSiswa">
+            @method('put')
             @csrf
             <div class="mb-3">
-                <input type="text" placeholder="Nama Lengkap" class="form-control  @error('fullname') is-invalid @enderror" id="" name="fullname" value="{{old('fullname')}}">
+                <input type="text" placeholder="Nama Lengkap" class="form-control  @error('fullname') is-invalid @enderror" id="" name="fullname" value="{{$data->user->fullname}}">
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control  @error('nickname') is-invalid @enderror" placeholder="Nama Panggilan" id="nama_panggilan" name="nickname" value="{{old('nickname')}}">
+                <input type="text" class="form-control  @error('nickname') is-invalid @enderror" placeholder="Nama Panggilan" id="nama_panggilan" name="nickname" value="{{$data->user->nickname}}">
               </div>
               <div class="mb-3 row">
                 <div class="col-6">
                     <div class="radio-item text-center">
-                        <input name="jenis_kelamin" id="radio1" type="radio" value="pria">
+                        <input name="jenis_kelamin" id="radio1" type="radio" value="pria" {{$data->jenis_kelamin == 'pria' ? 'checked':''}}>
                         <label for="radio1"><img src="{{asset('images/assets/male.png')}}" alt="" srcset="" style="max-width: 50px;"><br> Pria</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="radio-item text-center">
-                        <input name="jenis_kelamin" id="radio2" type="radio" value="wanita">
+                        <input name="jenis_kelamin" id="radio2" type="radio" value="wanita" {{$data->jenis_kelamin == 'wanita' ? 'checked':''}}>
                         <label for="radio2"><img src="{{asset('images/assets/female.png')}}" alt="" srcset="" style="max-width: 50px;"><br> Wanita</label>
                     </div>
                 </div>
@@ -59,50 +59,41 @@
                 <select class="form-control form-control-lg @error('kelas_id') is-invalid @enderror" id="" aria-label="Default select example" name="kelas_id" style="font-size: 17px">
                     <option value="">Pilih kelas..</option>
                     @foreach ($kelas as $kls)
-                        <option value="{{$kls->id}}">{{$kls->name}}</option>
+                        <option value="{{$kls->id}}" {{$data->kelas_id == $kls->id ? 'selected':''}}>{{$kls->name}}</option>
                     @endforeach
                   </select>
               </div>
               <div class="mb-3">
-                <input type="text" class="form-control  @error('alamat') is-invalid @enderror" id="alamat" placeholder="Alamat" name="alamat" value="{{old('alamat')}}">
+                <input type="text" class="form-control  @error('alamat') is-invalid @enderror" id="alamat" placeholder="Alamat" name="alamat" value="{{$data->alamat}}">
               </div>
               <div class="mb-3 row">
                 <div class="col">
                     <div class="">
-                        <input type="text" class="form-control  @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" placeholder="Tempat lahir" name="tempat_lahir" value="{{old('tempat_lahir')}}">
+                        <input type="text" class="form-control  @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" placeholder="Tempat lahir" name="tempat_lahir" value="{{$data->tempat_lahir}}">
                       </div>
                 </div>
                 <div class="col">
                     <div class="">
-                        <input type="date" class="form-control  @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" placeholder="Tanggal lahir" name="tanggal_lahir" value="{{old('tanggal_lahir')}}">
+                        <input type="date" class="form-control  @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" placeholder="Tanggal lahir" name="tanggal_lahir" value="{{$data->tanggal_lahir}}">
                       </div>
                 </div>
               </div>
               <div class="mb-3">
-                <input type="number" class="form-control  @error('no_telpon') is-invalid @enderror" id="no_telpon" placeholder="No Telpon" name="no_telp" value="{{old('no_telp')}}">
+                <input type="number" class="form-control  @error('no_telpon') is-invalid @enderror" id="no_telpon" placeholder="No Telpon" name="no_telp" value="{{$data->no_telp}}">
               </div>
               <div class="mb-3 row">
                 <div class="col">
                     <div class="">
-                        <input type="text" class="form-control  @error('nama_ortu') is-invalid @enderror" id="tempat_lahir" placeholder="Nama ortu" name="nama_ortu" value="{{old('nama_ortu')}}">
+                        <input type="text" class="form-control  @error('nama_ortu') is-invalid @enderror" id="tempat_lahir" placeholder="Nama ortu" name="nama_ortu" value="{{$data->nama_ortu}}">
                       </div>
                 </div>
                 <div class="col">
                     <div class="">
-                        <input type="number" class="form-control  @error('telp_ortu') is-invalid @enderror" id="telp_ortu" placeholder="Telp Ortu" name="telp_ortu" value="{{old('telp_ortu')}}">
+                        <input type="number" class="form-control  @error('telp_ortu') is-invalid @enderror" id="telp_ortu" placeholder="Telp Ortu" name="telp_ortu" value="{{$data->telp_ortu}}">
                       </div>
                 </div>
               </div>
-              <div class="mb-3">
-                <input type="email" class="form-control  @error('email') is-invalid @enderror email" id="email" placeholder="Email" name="email" value="{{old('email')}}">
-              </div>
-              <div class="mb-3">
-                <input type="password" class="form-control password @error('password') is-invalid @enderror" id="password2" placeholder="Password" name="password" value="">
-              </div>
-              <div class="mb-3">
-                <input type="password" class="form-control  @error('confirm_password') is-invalid @enderror" id="confirm_password" placeholder="Confirm Password" name="confirm_password" value="">
-              </div>
-            <button type="submit" class="btn btn-primary btnAddSiswa"><i class="bi bi-save"></i> Buat Akun</button>
+            <button type="submit" class="btn btn-primary btnAddSiswa"><i class="bi bi-save"></i> Edit Akun</button>
         </form>
     </div>
 </div>
@@ -175,71 +166,10 @@
         e.preventDefault();
         form = $(this).closest('form');
         if ($("#formAddSiswa").valid()) {
-            ajaxData();
-            $("#modalOtp").modal("show");
+            $("#formAddSiswa").submit();
         }
     })
 
-    //fungsi ajax
-    function ajaxData() {
-        email = form.find('.email').val();
-        token = $('meta[name="csrf-token"]').attr('content');
-        $.ajax({
-            url:"/send-otp/"+email,
-            type:'post',
-            data:{_token: token},
-            success:function (response) {
-
-                if (response.success) {
-                    alert("Kode OTP berhasil terkirim","success","#alertPlaceholder");
-                } else {
-                    alert("Gagal mengirim kode OTP","danger","#alertPlaceholder");
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                alert('An error occurred while sending email verification code',"danger","#alertPlaceholder");
-            }
-        })
-    }
-
-    $("#btnVerify").click(function(e){
-        e.preventDefault()
-        submit();
-    })
-
-    function submit() {
-        // 👇 Entered OTP
-        // debugger;
-        console.log("msuk");
-        let otp = "";
-        var token = $('meta[name="csrf-token"]').attr('content');
-        inputs.forEach((input) => {
-            otp += input.value;
-            input.classList.add("disabled");
-        });
-        $.ajax({
-            url:"/verif-otp/"+otp+"/"+email,
-            type:'post',
-            data:{_token: token},
-            dataType:'json',
-            success:function (response) {
-                if (response.success) {
-                    $("#formAddSiswa").submit();
-                    swal("Good job!", "Verifikasi kode otp berhasil", "success");
-                }
-                else{
-                    alert(response.message,"danger","#alertPlaceholder");
-                    inputs.forEach((input) => {
-                        input.classList.remove("disabled");
-                    });
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                alert('An error occurred while sending email verification code');
-            }
-        });
-    }
+   
 </script>
 @endsection

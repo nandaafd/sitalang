@@ -9,7 +9,7 @@ body{
     100%{opacity: 1;}
 }
 /* Hide all tab content by default */
-.tabcontent {
+#tab1 {
     display: none;
   }
   
@@ -112,6 +112,8 @@ a:hover{
 #tittleAuth{
   color: #0064D3;
 }
+
+
 .radio-section {
 	display: flex;
 	align-items: center;

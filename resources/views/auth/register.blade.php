@@ -167,7 +167,7 @@
               </div>
 
         </div>
-        <div class="col-sm-6 d-flex justify-content-center align-items-center" id="right" style="height: 100vh">
+        <div class="col-sm-6 d-flex justify-content-center align-items-center" id="right">
             <img id="img-left" class="img-fluid" src="{{asset('images/assets/vectorstudent.png')}}" alt="">
         </div>
     </div>
@@ -179,7 +179,7 @@
   <script>
     //validasi
     $("#formSiswa").validate({ 
-        errorClass: "text-danger",
+        errorClass: "text-danger is-invalid",
         rules: {
             fullname :{required:true, minlength:3},
             nickname :{required:true, minlength:3},
@@ -206,7 +206,7 @@
         }
     });
     $("#formGuru").validate({ 
-        errorClass: "text-danger",
+        errorClass: "text-danger is-invalid",
         rules: {
             fullname :{required:true, minlength:3},
             nickname :{required:true, minlength:3},
@@ -350,10 +350,10 @@
             }
         });
     }
-    $(".nav-link").click(function(){
-        $("#right").removeAttr("style")
-    })
-    //validation
+    // $(".nav-link").click(function(){
+    //     $("#right").removeAttr("style")
+    // })
+    // //validation
 
   </script>
 @endsection

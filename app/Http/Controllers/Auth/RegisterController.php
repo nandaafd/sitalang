@@ -58,6 +58,7 @@ class RegisterController extends Controller
                         'no_telp'=>$request->no_telp,
                         'alamat'=>$request->alamat,
                         'jenis_kelamin'=>$request->jenis_kelamin,
+                        'tempat_lahir'=>$request->tempal_lahir,
                         'tanggal_lahir'=>$request->tanggal_lahir,
                         'nama_ortu'=>$request->nama_ortu,
                         'telp_ortu'=>$request->telp_ortu,
