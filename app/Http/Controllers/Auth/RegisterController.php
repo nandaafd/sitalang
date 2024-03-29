@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use App\Models\Kelas;
+use App\Models\Role;
 use App\Models\Siswa;
 use App\Models\Token;
 use App\Models\User;
@@ -27,12 +28,13 @@ class RegisterController extends Controller
         try {
             if ($request->password == $request->confirm_password) {
                 if ($request->has('guru')) {
+                    $roleGuru = Role::where('name','guru')->first();
                     $user = User::create([
                         'fullname'=>$request->fullname,
                         'nickname'=>$request->nickname,
                         'email'=>$request->email,
                         'password'=> bcrypt($request->password),
-                        'role_id'=> 2, //id role guru
+                        'role_id'=> $roleGuru, //id role guru
                         'is_deleted'=>false
                     ]);
                     $guru = Guru::create([
@@ -44,12 +46,13 @@ class RegisterController extends Controller
                     ]);
                 }
                 elseif ($request->has('siswa')) {
+                    $roleSiswa = Role::where('name','siswa')->first();
                     $user = User::create([
                         'fullname'=>$request->fullname,
                         'nickname'=>$request->nickname,
                         'email'=>$request->email,
                         'password'=> bcrypt($request->password),
-                        'role_id'=> 3, //id role siswa
+                        'role_id'=> $roleSiswa, //id role siswa
                         'is_deleted'=>false
                     ]);
                     $siswa = Siswa::create([
@@ -58,7 +61,7 @@ class RegisterController extends Controller
                         'no_telp'=>$request->no_telp,
                         'alamat'=>$request->alamat,
                         'jenis_kelamin'=>$request->jenis_kelamin,
-                        'tempat_lahir'=>$request->tempal_lahir,
+                        'tempat_lahir'=>$request->tempat_lahir,
                         'tanggal_lahir'=>$request->tanggal_lahir,
                         'nama_ortu'=>$request->nama_ortu,
                         'telp_ortu'=>$request->telp_ortu,

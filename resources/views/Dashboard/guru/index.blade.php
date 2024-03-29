@@ -99,7 +99,7 @@
                                               </form>
                                           </li>
                                           <li><a href="{{route('guru.edit', $data->id)}}" class="dropdown-item text-success" title="edit"><i class="bi bi-pencil mr-2"></i> Edit</a></li>
-                                          <li><a href="{{route('guru.show', $data->id)}}" class="dropdown-item text-primary" title="detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
+                                          <li><a href="javascript:void" class="dropdown-item text-primary" data-id="{{$data->id}}" title="detail" id="btn-detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -118,6 +118,12 @@
     </div>
 </div>
 <script>
+    $("#btn-detail").click(function (e) {
+        var id = $(this).data("id");
+        $('#modal-lg').modal("show");
+        $('#modal-lg-label').text("Profil Guru");
+        $('.modal-lg-body').load('/dashboard/guru/'+id)
+    })
     $(document).ready(function(e) {
         $('#btnReset').click(function (e) {
             e.preventDefault();

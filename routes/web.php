@@ -48,5 +48,4 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('siswa', SiswaController::class);
     Route::resource('guru', GuruController::class);
 
-
 });

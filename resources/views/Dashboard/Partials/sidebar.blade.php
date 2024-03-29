@@ -8,33 +8,33 @@
     <div class="p-4">
         <h1><a href="index.html" class="logo">Dashboard <span>Sitalang SMKN 1 Labang</span></a></h1>
         <ul class="list-unstyled components mb-5">
-            <li class="">
-                <a href="#"><i class="bi bi-house mr-3"></i> Home</a>
+            <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                <a href="{{url('dashboard/')}}"><i class="bi bi-house mr-3"></i> Home</a>
             </li>
             <li class="">
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="bi bi-people mr-3"></i> User</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
+                    <li class="{{ Request::is('dashboard/admin*') ? 'active' : '' }}">
                         <a href="{{route('admin.index')}}">Admin</a>
                     </li>
-                    <li>
+                    <li class="{{ Request::is('dashboard/guru*') ? 'active' : '' }}">
                         <a href="{{route('guru.index')}}">Guru</a>
                     </li>
-                    <li>
+                    <li class="{{ Request::is('dashboard/siswa*') ? 'active' : '' }}">
                         <a href="{{route('siswa.index')}}">Siswa</a>
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="{{ Request::is('dashboard/pelanggaransiswa*') ? 'active' : '' }}">
                 <a href="{{route('pelanggaransiswa.index')}}"><i class="bi bi-list-columns mr-3"></i> Pelanggaran Siswa</a>
             </li>
-            <li>
+            <li class="{{ Request::is('dashboard/masterpelanggaran*') ? 'active' : '' }}">
                 <a href="{{route('masterpelanggaran.index')}}"><i class="bi bi-exclamation-triangle mr-3"></i> Master Pelanggaran</a>
             </li>
-            <li>
+            <li class="{{ Request::is('dashboard/kelas*') ? 'active' : '' }}">
                 <a href="{{route('kelas.index')}}"><i class="bi bi-door-closed mr-3"></i> Kelas</a>
             </li>
-            <li>
+            <li class="{{ Request::is('dashboard/sanksi*') ? 'active' : '' }}"> 
                 <a href="{{route('sanksi.index')}}"><i class="bi bi-journal-medical mr-3"></i> Sanksi</a>
             </li>
         </ul>

@@ -28,6 +28,9 @@
         @component('components.modal_otp')
             @include('components.modal_otp')
         @endcomponent
+        @component('components.modal_lg')
+            @include('components.modal_lg')
+        @endcomponent
         <script src="{{ asset('/js/auth.js') }}"></script>
         <script src="{{asset('js/dashboard.js')}}"></script>
     </body>
