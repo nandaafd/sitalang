@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -38,14 +39,17 @@ Route::post('/send-otp/{email}', [OtpController::class,'createOtp'])->name('send
 Route::post('/verif-otp/{otp}/{email}', [OtpController::class,'verifyOtp'])->name('verifOtp');
 Route::put('/block',[UserController::class,'block'])->name('block');
 
-Route::prefix('dashboard')->group(function () {
-    Route::resource('/', DashboardController::class);
-    Route::resource('admin', AdminController::class);
-    Route::resource('kelas', KelasController::class);
-    Route::resource('sanksi', SanksiController::class);
-    Route::resource('masterpelanggaran', MasterPelanggaranController::class);
-    Route::resource('pelanggaransiswa', PelanggaranSiswaController::class);
-    Route::resource('siswa', SiswaController::class);
-    Route::resource('guru', GuruController::class);
-
+Route::group(['middleware' => ['admin']], function(){
+    Route::prefix('dashboard')->group(function () {
+        Route::resource('/', DashboardController::class);
+        Route::resource('admin', AdminController::class);
+        Route::resource('kelas', KelasController::class);
+        Route::resource('sanksi', SanksiController::class);
+        Route::resource('masterpelanggaran', MasterPelanggaranController::class);
+        Route::resource('pelanggaransiswa', PelanggaranSiswaController::class);
+        Route::resource('siswa', SiswaController::class);
+        Route::resource('guru', GuruController::class);
+        Route::get('change-password/{id}',[ChangePasswordController::class,'IndexFromDashboard']);
+        Route::put('change-password/{id}/update',[ChangePasswordController::class, 'UpdateFromDashboard'])->name('update-password');
+    });
 });

@@ -120,3 +120,19 @@
 	visibility: visible;
 	transform: scale(1);
 }
+
+#profil-head{
+	background: linear-gradient(to right, #5a54f1, #201ba8);
+	color: white;
+}
+.rounded-pill{
+	background-color: #847ffa;
+	color: white;
+	width: fit-content;
+}
+.blocked ul li::marker{
+	color: red;
+}
+.active ul li::marker{
+	color: rgb(0, 241, 32);
+}

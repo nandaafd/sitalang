@@ -72,7 +72,7 @@
                         @forelse ($guru as $data)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$data->user->fullname}}</td>
+                                <td><a href="javascript:void" class="btn-detail" data-id="{{$data->id}}">{{$data->user->fullname}}</a></td>
                                 <td>{{$data->user->email}}</td>
                                 <td>{{$data->nip}}</td>
                                 <td class="text-center">
@@ -99,7 +99,7 @@
                                               </form>
                                           </li>
                                           <li><a href="{{route('guru.edit', $data->id)}}" class="dropdown-item text-success" title="edit"><i class="bi bi-pencil mr-2"></i> Edit</a></li>
-                                          <li><a href="javascript:void" class="dropdown-item text-primary" data-id="{{$data->id}}" title="detail" id="btn-detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
+                                          <li><a href="javascript:void" class="dropdown-item text-primary btn-detail" data-id="{{$data->id}}" title="detail" id="btn-detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -118,7 +118,7 @@
     </div>
 </div>
 <script>
-    $("#btn-detail").click(function (e) {
+    $(".btn-detail").click(function (e) {
         var id = $(this).data("id");
         $('#modal-lg').modal("show");
         $('#modal-lg-label').text("Profil Guru");

@@ -31,6 +31,9 @@
         @component('components.modal_lg')
             @include('components.modal_lg')
         @endcomponent
+        @component('components.modal_md')
+            @include('components.modal_md')
+        @endcomponent
         <script src="{{ asset('/js/auth.js') }}"></script>
         <script src="{{asset('js/dashboard.js')}}"></script>
     </body>
