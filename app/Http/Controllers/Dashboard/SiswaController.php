@@ -108,7 +108,17 @@ class SiswaController extends Controller
 
     public function show(string $id)
     {
-        
+        try {
+            $data = Siswa::find($id);
+            if (!$data) {
+                throw new Exception("gagal mendapatkan data siswa", 1);
+            }
+        } catch (Exception $ex) {
+            $data =  new LengthAwarePaginator([], 0, 10);
+            session()->flash('err', 'gagal tersambung dengan database, server database tidak bisa dihubungi');
+            return view('dashboard.siswa.index', compact('data'));
+        }
+        return view('dashboard.siswa.show', compact('data'));
     }
 
     public function edit(string $id)

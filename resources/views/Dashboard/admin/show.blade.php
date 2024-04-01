@@ -18,21 +18,17 @@
                         <i class="bi bi-gear text-light"></i>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{route('guru.edit',$data->id)}}">Edit Profile</a></li>
+                      <li><a class="dropdown-item" href="{{route('admin.edit',$data->id)}}">Edit Profile</a></li>
                     </ul>
                   </div>
             </div>
         </div>
         <div class="w-100 text-center">
-            @if($data->foto != null || $data->foto != "")
-                <img src="{{asset('/images/assets/blank-profile-picture.jpg')}}" onerror="this.src='{{asset('/images/assets/blank-profile-picture.jpg')}}'" alt="" class="img-fluid rounded-circle" srcset="" id="img-detail">
-            @else
-                <img src="{{asset('storage/'. $data->foto)}}" onerror="this.src='{{asset('/images/assets/blank-profile-picture.jpg')}}'" alt="" class="img-fluid rounded-circle" srcset="" id="img-detail">
-            @endif
+            <img src="{{asset('/images/assets/blank-profile-picture.jpg')}}" onerror="this.src='{{asset('/images/assets/blank-profile-picture.jpg')}}'" alt="" class="img-fluid rounded-circle" srcset="" id="img-detail">
         </div>
         <div class="text-center mt-3">
             <div class="h5 text-light">{{$data->user->fullname}} <span>({{$data->user->nickname}})</span></div>
-            <div class="text-light"> Guru <span>|</span> {{$data->nip}}</div>
+            <div class="text-light"> Admin <span>|</span> {{$data->code}}</div>
             <p style="font-size: 12px; color:rgb(175, 175, 255)">Last seen {{$data->user->last_login != null ? \Carbon\Carbon::parse($data->user->last_login)->format('H:m, d-M-Y') : 'unknown'}}</p>
         </div>
     </div>
@@ -43,18 +39,8 @@
             <hr class="w-100" style="border: 1px solid black"/>
         </div>
         <div class="col-lg-6 col-md-12 mb-3">
-            <label for=""><i class="bi bi-card-text mr-2"></i>Nomor Induk Pegawai (NIP)</label>
-            <div class="">{{$data->nip}}</div>
-            <hr class="w-100" style="border: 1px solid black"/>
-        </div>
-        <div class="col-lg-6 col-md-12 mb-3">
-            <label for=""><i class="bi bi-telephone-forward mr-2"></i> Phone</label>
-            <div class="">{{$data->no_telp}}</div>
-            <hr class="w-100" style="border: 1px solid black"/>
-        </div>
-        <div class="col-lg-6 col-md-12 mb-3">
-            <label for=""><i class="bi bi-geo-alt mr-2"></i> Alamat</label>
-            <div class="">{{$data->alamat}}</div>
+            <label for=""><i class="bi bi-card-text mr-2"></i>Admin Code</label>
+            <div class="">{{$data->code}}</div>
             <hr class="w-100" style="border: 1px solid black"/>
         </div>
     </div>

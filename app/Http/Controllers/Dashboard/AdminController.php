@@ -75,7 +75,17 @@ class AdminController extends Controller
 
     public function show(string $id)
     {
-        //
+        try {
+            $data = Admin::where('user_id',$id)->first();
+            if (!$data) {
+                throw new Exception("gagal mendapatkan data admin", 1);
+            }
+        } catch (Exception $ex) {
+            $data =  new LengthAwarePaginator([], 0, 10);
+            session()->flash('err', 'gagal tersambung dengan database, server database tidak bisa dihubungi');
+            return view('dashboard.admin.index', compact('data'));
+        }
+        return view('dashboard.admin.show', compact('data'));
     }
 
     public function edit(string $id)

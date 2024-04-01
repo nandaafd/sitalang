@@ -119,6 +119,7 @@
 </div>
 <script>
     $(".btn-detail").click(function (e) {
+        e.preventDefault();
         var id = $(this).data("id");
         $('#modal-lg').modal("show");
         $('#modal-lg-label').text("Profil Guru");

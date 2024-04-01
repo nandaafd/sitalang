@@ -109,7 +109,7 @@
                                               </form>
                                           </li>
                                           <li><a href="{{route('siswa.edit', $data->id)}}" class="dropdown-item text-success" title="edit"><i class="bi bi-pencil mr-2"></i> Edit</a></li>
-                                          <li><a href="{{route('siswa.show', $data->id)}}" class="dropdown-item text-primary" title="detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
+                                          <li><a href="{{route('siswa.show', $data->id)}}" data-id="{{$data->id}}" class="dropdown-item text-primary btn-detail" title="detail"><i class="bi bi-card-list mr-2"></i> Lihat Detail</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -128,6 +128,13 @@
     </div>
 </div>
 <script>
+    $(".btn-detail").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        $('#modal-lg').modal("show");
+        $('#modal-lg-label').text("Profil Siswa");
+        $('.modal-lg-body').load('/dashboard/siswa/'+id)
+    });
     $(document).ready(function(e) {
         $('#btnReset').click(function (e) {
             e.preventDefault();

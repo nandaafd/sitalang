@@ -45,7 +45,7 @@
                     <form action="{{url('/logout')}}" method="POST" class="">
                         @csrf
                         <button type="submit" class="btn btn-outline-light w-75" id="btn-logoutprofil" onclick="return confirm('are you sure?')"><i class="bi bi-box-arrow-right"></i> Logout</button>
-                        <a href="" class="btn btn-outline-light"><i class="bi bi-person"></i></a>
+                        <a href="javascript:void" data-id="{{Auth::id()}}" class="btn btn-outline-light btnProfile"><i class="bi bi-person"></i></a>
                     </form>
                 @else
                     <a href="{{url('/login')}}" class="w-100 btn btn-outline-light">Login</a>
@@ -60,3 +60,12 @@
 
       </div>
 </nav>
+<script>
+    $(".btnProfile").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        $('#modal-lg').modal("show");
+        $('#modal-lg-label').text("Profil Admin");
+        $('.modal-lg-body').load('/dashboard/admin/'+id)
+    });
+</script>
