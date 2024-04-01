@@ -8,18 +8,17 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use PragmaRX\Google2FA\Exceptions\Contracts\Google2FA;
 
-class OtpMail extends Mailable
+class ForgotPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $otp;
+    public $route;
     /**
      * Create a new message instance.
      */
-    public function __construct($otp)
+    public function __construct($route)
     {
-        $this->otp = $otp;
+        $this->route = $route;
     }
 
     /**
@@ -28,7 +27,7 @@ class OtpMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Sitalang Otp Mail',
+            subject: 'Forgot Password Mail',
         );
     }
 
@@ -38,13 +37,13 @@ class OtpMail extends Mailable
     // public function content(): Content
     // {
     //     return new Content(
-    //         view: 'auth.otpmail',
+    //         view: 'view.name',
     //     );
     // }
     public function build()
     {
-        return $this->view('auth.otpmail')->with([
-            'otp' => $this->otp,
+        return $this->view('auth.forgotpassword.passwordmail')->with([
+            'route' => $this->route,
         ]);
     }
     /**

@@ -7,6 +7,18 @@
             <h1 class="mx-4 mt-5" id="tittleAuth">Sitalang</h1>
             <h3 class="mx-4">Halo, Selamat Datang Kembali</h3>
             <h5 id="text" class="mx-4 mb-5">Ayo masuk ke Sitalang sekarang juga!</h5>
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            @if(session('err'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('err') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
            <h3 class="mx-4 mb-2">Login</h3>
             <form action="/login" method="POST">
                 @csrf
@@ -21,7 +33,7 @@
                     <label for="password-login" class="mx-4">Password</label>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a href="http://" class="text-primary mx-4">Lupa password</a>
+                    <a href="{{url('forgot-password')}}" class="text-primary mx-4">Lupa password</a>
                 </div>
                 @if (session()->has('loginError'))
                     <div class="alert alert-danger alert-dismissible fade show mx-2" role="alert">

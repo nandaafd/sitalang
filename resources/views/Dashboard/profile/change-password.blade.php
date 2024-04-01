@@ -1,6 +1,6 @@
 <div class="container">
     <div class="mx-2">
-        <form method="POST" action="{{ route('update-password',$data->id) }}">
+        <form method="POST" action="{{ route('update-password',$data->id) }}" id="formChangePassword">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -28,3 +28,57 @@
         </form>
     </div>
 </div>
+<script>
+    $("#formChangePassword").validate({ 
+    errorClass: "text-danger is-invalid",
+    rules: {
+        current_password:{required:true},
+        password:{required:true, strongPassword:true},
+        password_confirmation:{required:true, equalTo:"#password"}
+    },
+    messages: {
+        current_password:{required:"wajib diisi"},
+        password:{required:"password wajib diisi"},
+        password_confirmation:{required:"confirm password wajib diisi", equalTo:"password tidak sama"}
+    }
+});
+//validate password
+$.validator.addMethod("strongPassword",
+    function (value, el) {
+        return (/^(?=.*\d)(?=.*[!@@#$%^&*])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/.test(value));
+    },
+    function (checkRes, el) {
+        let pass = $(el).val();
+        let txtAlert = "";
+        if (!(/^(?=.*[A-Z])/.test(pass))) {
+            txtAlert += "password setidaknya harus mengandung satu huruf besar<br>";
+        }
+        if (!(/^(?=.*[a-z])/.test(pass))) {
+            txtAlert += "password setidaknya harus mengandung satu huruf kecil<br>";
+        }
+        if (!(/^(?=.*[0-9])/.test(pass))) {
+            txtAlert += "password setidaknya harus mengandung satu angka<br>";
+        }
+        if (!(/^(?=.*[!@@#$%^&*])/.test(pass))) {
+            txtAlert += "password setidaknya harus mengandung satu karakter spesial<br>";
+        }
+        if (!(/^(?=.{8,20})/.test(pass))) {
+            txtAlert += "password harus terdiri dari 8-20 karakter<br>";
+        }
+
+        if (txtAlert == "") {
+            return false;
+        }
+        else {
+            return txtAlert;
+        }
+    }
+);
+
+$("#btn-changepassword").click(function (e) {
+    e.preventDefault();
+    if ($("#formChangePassword").valid()) {
+        $("#formChangePassword").submit();
+    }
+});
+</script>

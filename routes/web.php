@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -39,6 +40,12 @@ Route::post('/send-otp/{email}', [OtpController::class,'createOtp'])->name('send
 Route::post('/verif-otp/{otp}/{email}', [OtpController::class,'verifyOtp'])->name('verifOtp');
 Route::put('/block',[UserController::class,'block'])->name('block');
 
+//forgot password
+Route::get('/forgot-password',[ForgotPasswordController::class, 'index']);
+Route::post('/sendmail',[ForgotPasswordController::class, 'sendMail'])->name('sendMail');
+Route::get('/reset-password/{id}',[ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
+Route::put('/reset-password-process/{id}',[ForgotPasswordController::class, 'process'])->name("ForgotPassword");
+
 Route::group(['middleware' => ['admin']], function(){
     Route::prefix('dashboard')->group(function () {
         Route::resource('/', DashboardController::class);
@@ -50,6 +57,6 @@ Route::group(['middleware' => ['admin']], function(){
         Route::resource('siswa', SiswaController::class);
         Route::resource('guru', GuruController::class);
         Route::get('change-password/{id}',[ChangePasswordController::class,'IndexFromDashboard']);
-        Route::put('change-password/{id}/update',[ChangePasswordController::class, 'UpdateFromDashboard'])->name('update-password');
+        Route::put('change-password/{id}/update',[ChangePasswordController::class, 'Update'])->name('update-password');
     });
 });
