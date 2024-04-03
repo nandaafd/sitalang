@@ -121,7 +121,7 @@
                         @forelse ($pelsis as $data)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$data->siswa->user->fullname}}</td>
+                                <td><a href="javascript:void" class="btn-detail" data-id="{{$data->siswa_id}}">{{$data->siswa->user->fullname}}</a></td>
                                 <td>{{ \Carbon\Carbon::parse($data->tanggal)->format('l, d-M-Y') }}</td>
                                 <td>{{$data->pelanggaran->nama_pelanggaran}}</td>
                                 <td>
@@ -157,6 +157,13 @@
     </div>
 </div>
 <script>
+    $(".btn-detail").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        $('#modal-lg').modal("show");
+        $('#modal-lg-label').text("Profil Siswa");
+        $('.modal-lg-body').load('/dashboard/siswa/'+id)
+    })
     $(document).ready(function(e) {
         $('#btnReset').click(function (e) {
             e.preventDefault();

@@ -1,6 +1,12 @@
 #btnPsSemua{
     border-radius: 10px;
 }
+#dropdownHome{
+	list-style-type: none;
+}
+#dropdownHome li{
+    float: left;
+}
 #filterField{
     list-style-type: none;
     margin-left: -30px;
@@ -135,4 +141,10 @@
 }
 .active ul li::marker{
 	color: rgb(0, 241, 32);
+}
+.dropdown-toggle::after {
+    display: none;
+}
+#btnSetting{
+	border: none;
 }

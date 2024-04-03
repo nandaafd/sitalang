@@ -82,7 +82,7 @@
                         @forelse ($siswa as $data)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$data->user->fullname}}</td>
+                                <td><a href="javascript:void" class="btn-detail" data-id="{{$data->id}}">{{$data->user->fullname}}</a></td>
                                 <td>{{$data->user->email}}</td>
                                 <td>{{$data->kelas->name}}</td>
                                 <td class="text-center">
