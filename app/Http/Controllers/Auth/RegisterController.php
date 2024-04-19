@@ -34,7 +34,7 @@ class RegisterController extends Controller
                         'nickname'=>$request->nickname,
                         'email'=>$request->email,
                         'password'=> bcrypt($request->password),
-                        'role_id'=> $roleGuru, //id role guru
+                        'role_id'=> $roleGuru->id, //id role guru
                         'is_deleted'=>false
                     ]);
                     $guru = Guru::create([
@@ -52,7 +52,7 @@ class RegisterController extends Controller
                         'nickname'=>$request->nickname,
                         'email'=>$request->email,
                         'password'=> bcrypt($request->password),
-                        'role_id'=> $roleSiswa, //id role siswa
+                        'role_id'=> $roleSiswa->id, //id role siswa
                         'is_deleted'=>false
                     ]);
                     $siswa = Siswa::create([
