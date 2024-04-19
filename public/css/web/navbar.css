@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins&family=Rubik+Vinyl&display=swap');
+
+.navbar{
+    background-color: white;
+    z-index: 4; 
+    width: 100%;
+}
+.navbar-brand{
+    margin-left: 2rem;
+    
+}
+#nav-menu{
+    font-family: 'Poppins','sans-serif';
+    font-weight: 600;
+    font-size: 18px;
+    color: #caca;
+}
+#btn-login-nav{
+    width: 106px;
+    height: 38px;
+    border-radius: 5px;
+    background-color: #0064D3;
+    font-family: 'Poppins','sans-serif';
+    font-weight: 600;
+    border: none;
+    margin-right: 2.5rem;
+
+}
+#btn-profil-nav{
+    width: 106px;
+    height: 38px;
+    border-radius: 5px;
+    background-color: #0064D3;
+    font-family: 'Poppins','sans-serif';
+    font-weight: 600;
+    border: none;
+    margin-right: 2.5rem;
+
+}
+#btn-login-nav:hover{
+    color: black;
+    background-color: yellow;
+}
+#btn-profil-nav:hover{
+    color: black;
+    background-color: yellow;
+}
+#nav-menu .nav-item a:hover{
+    color: yellow;
+    border-bottom: 3px solid yellow;
+}
+#btn-idn{
+    border: none;
+    background-color: transparent;
+    border-radius: 10px;
+}
+#btn-idn:hover{
+    background-color: rgb(243, 243, 243);
+}
+#btn-idn img{
+    width: 40px;
+}
+
+@media screen and (max-width : 500px) {
+    /* .navbar-brand{
+        margin-left: 1rem;
+    } */
+    .navbar-brand img{
+        width: 100px;
+    }
+    #nav-menu .nav-item{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #nav-menu .nav-item .btn-primary{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #btn-login-nav{
+        margin-left: 10%;
+        width: 80%;
+    }
+    #btn-profil-nav{
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    #bahasa{
+        display: none;
+    }
+    
+}

@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins&family=Rubik+Vinyl&display=swap');
+*{
+    margin: 0;
+}
+body{
+    animation: body ease 3s;
+}
+@keyframes body{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+.btn-primary:hover{
+    background-color: yellow;
+    color: black;
+}
+.btn-primary{
+    background-color: #0064D3;
+    border: none;
+}
+#hero{
+    background-color: #ECEEF9;
+    margin-top: 5%;
+    border-radius: 25px;
+    width: 98%;
+    height: 100vh;
+}
+#tagline{
+    margin-left: 3%;
+}
+#tagline h1{
+    font-family: 'Poppins','sans-serif'; 
+    font-weight: 600;
+    line-height: 3.3rem;
+    font-size: 40px;
+    margin-top: 20%;
+}
+#tagline span{
+    color: #FF6B00;
+}
+#tagline p{
+    font-family: 'Poppins','sans-serif'; 
+    font-weight: 500;
+    font-size: 20px;
+}
+#half-hero{
+    width: fit-content;
+    height: 100vh;
+    z-index: 1;
+}
+#person-hero{
+    width: fit-content;
+    height: 100vh;
+    z-index: 3;
+}
+#eclipse{
+    width: 18%;
+    right: 15%;
+    top: 20%;
+    z-index: 2;
+}
+#btn-daftar-hero{
+    background-color: #0064D3;
+    color: white;
+    font-size: 18px;
+    width: 176px;
+    font-family: 'Poppins','sans-serif';
+    font-weight: 400;
+    border: none;
+    padding: 10px 10px;
+}
+#btn-daftar-hero:hover{
+    background-color: yellow;
+    color: black;
+}
+.ikon-daftar{
+    height: 90px;
+    width: 90px;
+    padding: 15px 15px;
+}
+#menu-ikon{
+    text-decoration: none;  
+    color: black;
+}
+#menu-ikon:hover{
+    background-color: #fff5b1;
+}
+.daftar{
+    width: 80%;
+    background-color: aquamarine;
+}
+.daftar p{
+    font-family: 'Poppins','sans-serif';
+    text-decoration: none; 
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+}
+#section-tittle{
+    font-family: 'Poppins','sans-serif';
+    font-size: 30px;
+    font-weight: 600;
+}
+#search-area{
+    font-family: 'Poppins','sans-serif';
+}
+#search-area  h3{
+    font-weight: 600;
+    margin-left: 3%;
+}
+#search-area p{
+    margin-left: 3%;
+}
+#search-area span{
+    color: #FF6B00;
+}
+#search-form{   
+    margin-left: 2%;
+    width: 98%;
+}
+.menu{
+    width: 98%;
+}
+.menu-box{
+    border-radius: 10px;
+    box-shadow: 5px 5px 40px 20px rgb(243, 243, 243);
+    width: 170px;
+} 
+.menu-box:hover{
+    background-color: #fff5b1;
+}
+#menu-area .menu .menu-box a{
+    color: black;
+    text-decoration: none;
+    font-family: 'Poppins','sans-serif';
+    font-weight: 500;
+}
+#search-area{
+    background-color: #ECEEF9;
+    width: 98%;
+    border-radius: 10px;
+}
+#search-bar{
+    font-family: 'Poppins','sans-serif';
+}
+#btn-search{
+    background-color: white ;
+    color: #0064D3;
+    font-family: 'Poppins','sans-serif';
+    font-weight: 400;
+    border: none;
+    width: max-content;
+}
+#btn-search:hover{
+    background-color: yellow;
+    color: black;
+    text-decoration: none;
+}
+#rangkuman-area{
+    background-color: rgb(241, 244, 251);
+    padding-top: 2  0px;
+}
+#rangkuman{
+  padding-bottom: 40px;
+}
+#mitra-card{
+    width: 180px;
+}
+#tittle-rangkuman{
+    font-family: 'Poppins','sans-serif';
+    font-size: 26px;
+    font-weight: 600;
+}
+#content-mitra{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: 170px;
+    max-height: 170px;
+}
+#content-mitra #nama-mitra{
+    font-weight: 600;
+    font-size: 16px;
+}
+#tittle-mitra{
+    font-size: 26px;
+    font-weight: 600;
+    font-family: 'Poppins','sans-serif';
+}
+#subtittle-mitra{
+    width: 60%;
+}
+#content-mitra ul li{
+    list-style-type: none;
+}
+#content-mitra #foto-mitra{
+    max-width: 100px;
+    max-height: 80px;
+    min-height: 80px;
+    min-width: 100px;
+    border-radius: 50%;
+}
+#card-rangkuman{
+    max-width: 200px;
+}
+#btn-baca{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-baca:hover{
+    background-color: yellow;
+    color: black;
+}
+#card-rangkuman #gambar-rangkuman{
+    max-height: 150px;
+    min-height: 150px;
+}
+#judul-rangkuman{
+    font-weight: 600;
+}
+#card-tittle{
+    font-size: 16px;
+}
+#rangkuman{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+@media screen and (max-width : 500px) {
+    #hero{
+        margin-top: 70px;
+        height: 200px;
+        width: 93%;
+        border-radius: 5px;
+    }
+    #half-hero{
+        height: 200px;
+        margin-left: 10%;
+    }
+    #tittle-rangkuman{
+        font-size: 16px;
+    }
+    #tittle-mitra{
+        font-size: 16px;
+    }
+    #subtittle-rangkuman{
+        font-size: 12px;
+    }
+    #subtittle-mitra{
+        font-size: 12px;
+    }
+    #content-mitra #nama-mitra{
+        font-size: 12px;
+    }
+    #content-mitra #foto-mitra{
+        max-width: 80px;
+        max-height: 60px;
+        min-height: 60px;
+        min-width: 80px;
+        border-radius: 50%;
+    }
+    #card-rangkuman #gambar-rangkuman{
+        max-height: 100px;
+        min-height: 100px;
+    }
+    #card-rangkuman{
+        max-width: 150px;
+        max-height: 250px;
+        overflow: scroll;
+    }
+    #rangkuman{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #card-tittle{
+        font-size: 12px;
+    }
+    #btn-baca{
+        font-size: 10px;
+    }
+    
+    #eclipse{
+        top: 85px;
+    }
+    #tagline h1{
+        margin-top: 3%;
+        line-height: 1.3rem;
+        font-size: 12px;
+        width: 50%;
+    }
+    #tagline p{
+        font-size: 8px;
+        width: 50%;
+    }
+    #person-hero{
+        height: 200px;
+    }
+    #btn-daftar-hero{
+        width: 100px;
+        font-size: 8px;
+        padding: 5px 5px;
+    }
+    /* .ikon-daftar{
+        height: 40px;
+        width: 40px;
+    } */
+    #search-row{
+        width: 97%;
+    }
+    #search-area{
+        width: 93%;
+        height: 120px;
+    }
+    #search-area h3{
+        font-size: 12px;
+    }
+    #search-area  p{
+        font-size: 8px;
+    }
+    #search-bar{
+        height: 25px;
+    }
+    #btn-search{
+       padding: 0px 5px;
+       margin-left: -5px;
+    }
+    .menu .menu-box img{
+        width: 50px;
+    }
+    .menu-box{
+        width: 85px;
+        margin-bottom: 20px;
+    } 
+    #menu-area .menu .menu-box a{
+        font-size: 8px;
+    }
+}

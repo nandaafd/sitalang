@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Poppins&family=Rubik+Vinyl&display=swap');
+*{
+    font-family: 'Poppins','sans-serif';
+    margin: 0;
+}
+#body{
+    background-color: rgb(244, 244, 244);
+    animation: body ease 3s;
+}
+@keyframes body{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+.btn-primary:hover{
+    background-color: yellow;
+    color: black;
+}
+.btn-primary{
+    background-color: #0064D3;
+    border: none;
+}
+#page{
+    padding: 3% 3%;
+    
+}
+#prakerin-header{
+    background-color: white;
+    margin-top: 5%;
+    margin-left: 20px;
+    padding: 30px 30px 30px 30px;
+    font-family: 'Poppins','sans-serif';
+}
+#prakerin-data{
+    background-color: white;
+    margin-top: 2%;
+    margin-left: 20px;
+    padding: 30px 30px 30px 30px;
+    font-family: 'Poppins','sans-serif';
+}
+#prakerin-data span{
+    color: #FF6B00;
+}
+#prakerin-data i{
+    font-size: 14px;
+}
+#prakerin-data .btn{
+    padding: 2px 5px;
+}
+#prakerin-data #bukti{
+    text-decoration: none;
+    color: #0064D3;
+}
+#prakerin-page{
+    background-color: white;
+    margin-top: 2%;
+    margin-left: 20px;
+    padding: 30px 30px 30px 30px;
+    font-family: 'Poppins','sans-serif';
+}
+#btn-submitdaftar{
+    border: none;
+}
+#btn-submitdaftar:hover{
+    background-color: yellow;
+    color: black;
+}
+#profil-page{
+    background-color: white;
+    margin-top: 5%;
+    padding: 30px 30px 30px 30px;
+    font-family: 'Poppins','sans-serif';
+}
+#profil-page ul li{
+    list-style-type: none;
+}
+#profil-page ul li span{
+    font-weight: 600;
+}
+#foto-profil{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+#btn-editprofil{
+    width: 90%;
+    border: none;
+}
+#btn-editprofil:hover{
+    background-color: yellow;
+    color: black;
+}
+#btn-logoutprofil{
+    width: 90%;
+}
+#btn-ubahpass{
+    border: none;
+    width: 100%;
+    background-color: #0064D3;
+}
+#btn-ubahpass:hover{
+    color: black;
+    background-color: yellow;
+}
+#change-password{
+    background-color: white;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 30px 30px 30px;
+    font-family: 'Poppins','sans-serif';
+    box-shadow: 0px 0px 10px 2px rgba(184, 184, 184, 0.3);
+}
+#btn-changepassword{
+    border: none;
+    width: 100%;
+    background-color: #0064D3;
+}
+#btn-changepassword:hover{
+    color: black;
+    background-color: yellow;
+}
+#logbook-page{
+    background-color: white;
+    margin-top: 2%;
+    margin-left: 20px;
+    padding: 30px 30px 30px 30px;
+    font-family: 'Poppins','sans-serif';
+}
+#btn-addlogbook{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-addlogbook:hover{
+    background-color: yellow;
+    color: black;
+}
+#btn-submitlogbook{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-submitlogbook:hover{
+    background-color: yellow;
+    color: black;
+}
+#btn-addabsen{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-addabsen:hover{
+    background-color: yellow;
+    color: black;
+}
+#btn-submitabsen{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-submitabsen:hover{
+    background-color: yellow;
+    color: black;
+}
+#content-mitra{
+    background-color: rgb(244, 244, 255);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: 320px;
+    max-height: 320px;
+}
+#content-mitra #nama-mitra{
+    font-weight: 600;
+}
+#content-mitra ul li{
+    list-style-type: none;
+}
+#content-mitra #foto-mitra{
+    max-width: 100px;
+    max-height: 80px;
+    border-radius: 50%;
+}
+#card-berita #gambar-berita{
+    max-height: 150px;
+    min-height: 150px;
+}
+#judul-berita{
+    font-weight: 600;
+}
+#btn-baca{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-baca:hover{
+    background-color: yellow;
+    color: black;
+}
+#gambar-isi{
+    max-width: 600px;
+    max-height: 300px;
+    overflow: hidden;
+}
+#btn-download{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-download:hover{
+    background-color: yellow;
+    color: black;
+}
+#btn-addnilai{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-addnilai:hover{
+    background-color: yellow;
+    color: black;
+}
+#btn-editnilai{
+    background-color: #0064D3;
+    border: none;
+}
+#btn-editnilai:hover{
+    background-color: yellow;
+    color: black;
+}
+ul li{
+    list-style-type: none;
+}
+/* file */
+.files input {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 120px 0px 85px 35%;
+    text-align: center !important;
+    margin: 0;
+    width: 100% !important;
+    background-image: url(images/ikon/upload.gif);
+}
+.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+ }
+.files{ position:relative}
+.files:after {  pointer-events: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 50px;
+    right: 0;
+    height: 56px;
+    content: "";
+    background-image: url(images/ikon/upload.gif);
+    display: block;
+    margin: 0 auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.color input{ background-color:#f1f1f1;}
+.files:before {
+    position: absolute;
+    bottom: 120px;
+    left: 0;  pointer-events: none;
+    width: 100%;
+    right: 0;
+    height: 57px;
+    content: "Drag & Drop File Disini";
+    
+    display: block;
+    margin: 0 auto;
+    color: #0064D3;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+}
+@media screen and (max-width : 500px) {
+    *{
+        font-size: 12px;
+    }
+    #prakerin-header h2{
+        font-size: 16px;
+    }
+    #prakerin-page h3{
+        font-size: 14px;
+    }
+    #prakerin-header span{
+        font-size: 16px;
+    }
+    #prakerin-header h4{
+        font-size: 14px;
+    }
+    #prakerin-data h5{
+        font-size: 14px;
+    }
+    table{
+        font-size: 12px;
+    }
+    #isi_berita{
+        font-size: 10px;
+        text-align: justify;
+    }
+    #btn-addlogbook{
+        width: 80px;
+        font-size: 10px;
+        margin-top: 20px;
+    }
+    #btn-addlogbook i{
+        font-size: 10px;
+    }
+    #btn-addabsen{
+        width: 80px;
+        font-size: 10px;
+        margin-top: 20px;
+    }
+    #btn-addabsen i{
+        font-size: 10px;
+    }
+}
