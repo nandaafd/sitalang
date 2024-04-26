@@ -155,6 +155,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function(){
         $(".btnProfile").click(function (e) {
@@ -172,8 +173,7 @@
             const data = {
                 labels: ['Perempuan', 'Laki-Laki'],
                 datasets: [{
-                    data: [5, 10],
-                    // data: [{{$jmlSiswaWanita}}, {{$jmlSiswaPria}}],
+                    data: [{{$jmlSiswaWanita}}, {{$jmlSiswaPria}}],
                     backgroundColor: ['#007bff', '#dc3545']
                 }]
             };

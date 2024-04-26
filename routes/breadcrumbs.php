@@ -131,3 +131,26 @@ Breadcrumbs::for('siswa.edit', function ($trail) {
     $trail->parent('siswa.index');
     $trail->push('Edit', url('dashboard/siswa/{id}/edit'));
 });
+
+//---WEB---
+
+Breadcrumbs::for('home', function ($trail) {
+    $trail->push('Home', url('/home'));
+});
+// master pelanggaran
+Breadcrumbs::for('pelanggaran.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Master Pelanggaran', route('pelanggaran.index'));
+});
+Breadcrumbs::for('pelanggaran.create', function ($trail) {
+    $trail->parent('pelanggaran.index');
+    $trail->push('Create', route('pelanggaran.create'));
+});
+Breadcrumbs::for('pelanggaran.show', function ($trail) {
+    $trail->parent('pelanggaran.index');
+    $trail->push('Detail', url('pelanggaran/{id}'));
+});
+Breadcrumbs::for('pelanggaran.edit', function ($trail) {
+    $trail->parent('pelanggaran.index');
+    $trail->push('Edit', url('pelanggaran/{id}/edit'));
+});

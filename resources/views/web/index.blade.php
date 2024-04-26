@@ -29,7 +29,7 @@
     </div>
     <div class="col">
       <div class="menu-box mx-auto py-1">
-        <a href="{{url('/logbooks')}}" class="text-center mx-auto">
+        <a href="{{url('/pelanggaran')}}" class="text-center mx-auto">
           <img src="{{asset('images/assets/icons/folder.gif')}}" alt="" class="ikon-daftar img-fluid">
           <p>Master Pelanggaran</p>
         </a>
@@ -69,6 +69,7 @@
     </div>
   </div>
 </section>
+@if(Auth::id())
 <section id="rangkuman-area" class="pb-4">
     <h3 class=" pt-3 ms-5" id="tittle-rangkuman">Rangkuman Data</h3>
       <p class="ms-5" id="subtittle-rangkuman">Ranguman data terbaru tersedia disini!</p>
@@ -168,15 +169,22 @@
             </div>
         </div>
   </section>
+@endif
+
   <script>
     $(document).ready(function () {
+
+        $('#btn-lainnya').click(function (e) {
+            $("#modal-menu").modal('show');
+        })
+        
         // Fungsi untuk memperbarui chart
         function updateChart() {
             // Data untuk doughnut chart
             const data = {
                 labels: ['Perempuan', 'Laki-Laki'],
                 datasets: [{
-                    data: [5, 10],
+                    data: [{{$jmlSiswaWanita}}, {{$jmlSiswaPria}}],
                     backgroundColor: ['#007bff', '#dc3545']
                 }]
             };
@@ -219,7 +227,7 @@
             labels: ['Berat', 'Sedang', 'Ringan'],
             datasets: [{
                 label: 'Jumlah Pelanggaran',
-                data: [4, 5, 6],
+                data: [{{$pelBerat}}, {{$pelSedang}}, {{$pelRingan}}], // Misal: 10 pelanggaran berat, 20 pelanggaran sedang, 30 pelanggaran ringan
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 205, 86, 0.2)',
@@ -256,7 +264,7 @@
             labels: ['Admin', 'Guru', 'Siswa'],
             datasets: [{
                 label: 'Total Pengguna',
-                data: [5, 9, 19],
+                data: [{{$userAdmin}}, {{$userGuru}}, {{$userSiswa}}], // Misal: 10 pelanggaran berat, 20 pelanggaran sedang, 30 pelanggaran ringan
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(75, 192, 192, 0.2)',

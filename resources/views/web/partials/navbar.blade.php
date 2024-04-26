@@ -12,28 +12,26 @@
           <a class="nav-link" aria-current="page" href="{{url('/')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#footer">Kontak</a>
+          <a class="nav-link" id="btn-menu" href="javascript:void">Menu</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="https://smkihyaululumdukun.sch.id" target="blank">Tentang</a>
         </li>
       </ul>
-      <div class="btn-group mx-2" id="bahasa">
-      <button id="btn-idn" type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="{{asset('images/indonesia.png')}}" alt="" srcset="">
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Bahasa Indonesia</a></li> 
-      </ul>
-      </div>
+      
        @if (Auth::user())
-          <a href="{{route('profil.show',Auth::user()->id)}}" class="btn btn-primary"  id="btn-profil-nav">Profil</a>
+          <a href="{{route('profile.show',Auth::user()->id)}}" class="btn btn-primary"  id="btn-profil-nav">Profil</a>
         @else
           <a href="{{url('/login')}}" class="btn btn-primary" id="btn-login-nav">Login</a> 
        @endif
     </div>
   </div>
 </nav>
+<script>
+  $('#btn-menu').click(function(){
+    $("#modal-menu").modal("show");
+  });
+</script>
 @push('js')
 
 @endpush

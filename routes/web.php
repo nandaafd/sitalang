@@ -14,6 +14,9 @@ use App\Http\Controllers\Dashboard\PelanggaranSiswaController;
 use App\Http\Controllers\Dashboard\SanksiController;
 use App\Http\Controllers\Dashboard\SiswaController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\MasterPelanggaranController as WebMasterPelanggaranController;
+use App\Http\Controllers\Web\ProfileController;
 use App\Models\Sanksi;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +31,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register-store', [RegisterController::class, 'store'])->name('register-store');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -59,4 +60,13 @@ Route::group(['middleware' => ['admin']], function(){
         Route::get('change-password/{id}',[ChangePasswordController::class,'IndexFromDashboard']);
         Route::put('change-password/{id}/update',[ChangePasswordController::class, 'Update'])->name('update-password');
     });
+});
+Route::get('/', function () {
+    return redirect('/home');
+});
+Route::resource('/home',HomeController::class);
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::resource('/profile',ProfileController::class);
+    Route::resource('/pelanggaran', WebMasterPelanggaranController::class);
 });
