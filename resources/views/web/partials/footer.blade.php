@@ -1,7 +1,7 @@
 <section id="footer">
   <div class="row mx-3">
       <div class="col-md-8" id="left">
-          <img src="{{asset('images/logo2.png')}}" alt="" id="footer-logo">
+          <img src="{{asset('images/assets/sitalang_putih.png')}}" alt="" id="footer-logo">
           <p id="foot-keterangan">Sitalang merupakan website yang bertujuan untuk 
               memberikan berbagai informasi mengenai pelanggaran siswa, pencatatan dan pemantauan pelanggaran
                siswa-siswi SMKN 1 Labang. 

@@ -4,20 +4,13 @@
     <div class="col" id="sitalang-header">
         <div class="row">
           <div class="col-9">
-            {{-- @can('siswa')
-                <h2 style="font-weight: 600;">Bagaimana <span style="color:#FF6B00;">Kegiatanmu</span> Hari Ini?<br>
-                    Ayo <span style="color:#FF6B00;">Ekspresikan</span>  Kegiatanmu 
-                    Di Logbook Sekarang Juga!</h4>
-                <h5>Logbook adalah catatan sejarahmu selama mengikuti prakerin, yuk isi sekarang.</h5>
-            @endcan
-            @can('pembimbing-lapangan')
-            <h2 style="font-weight: 600;">Dengan <span style="color:#FF6B00;">Logbook</span>, Anda Dapat Memantau Kegiatan Siswa <span style="color:#FF6B00;">Setiap Hari</span> Dengan Mudah!</h4>
-                <h4>Logbook adalah wahana ekspresi siswa selama mengikuti prakerin.</h4>
-            @endcan
-            @can('guru')
-            <h2 style="font-weight: 600;">Dengan <span style="color:#FF6B00;">Logbook</span>, Anda Dapat Memantau Kegiatan Siswa <span style="color:#FF6B00;">Setiap Hari</span> Dengan Mudah!</h4>
-                <h4>Logbook adalah wahana ekspresi siswa selama mengikuti prakerin.</h4>
-            @endcan --}}
+            <h4 style="font-weight: 600;"> "<span style="color:#FF6B00;">Disiplin</span> 
+                diri adalah  <span style="color:#FF6B00;">kekuatan ajaib</span>  Kegiatanmu 
+                 yang membuat kamu benar-benar tak terhentikan".
+            </h4>
+            <div class="container">
+                {{ Breadcrumbs::render() }}
+            </div>
           </div>
           <div class="col-3">
             <img id="vector2" class="img-fluid" src="{{asset('images/assets/vector2.png')}}" alt="" srcset="">
@@ -96,12 +89,12 @@
                                 <td>{{$data->Kategori->name}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <form action="{{ route('masterpelanggaran.destroy', $data->id) }}" method="POST">
+                                        <form action="{{ route('pelanggaran.destroy', $data->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" title="Hapus data" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i class="bi bi-trash3-fill"></i></button>
                                           </form>  
-                                          <a href="{{route('masterpelanggaran.edit', $data->id)}}" class="btn btn-success btn-sm" title="edit"><i class="bi bi-pencil"></i></a>            
+                                          <a href="{{route('pelanggaran.edit', $data->id)}}" class="btn btn-success btn-sm" title="edit"><i class="bi bi-pencil"></i></a>            
                                     </div>
                                 </td>
                             </tr>
