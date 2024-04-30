@@ -154,3 +154,39 @@ Breadcrumbs::for('pelanggaran.edit', function ($trail) {
     $trail->parent('pelanggaran.index');
     $trail->push('Edit', url('pelanggaran/{id}/edit'));
 });
+
+// sanksi
+Breadcrumbs::for('data-sanksi.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Sanksi', route('data-sanksi.index'));
+});
+Breadcrumbs::for('data-sanksi.create', function ($trail) {
+    $trail->parent('data-sanksi.index');
+    $trail->push('Create', route('data-sanksi.create'));
+});
+Breadcrumbs::for('data-sanksi.show', function ($trail) {
+    $trail->parent('data-sanksi.index');
+    $trail->push('Detail', url('data-sanksi/{id}'));
+});
+Breadcrumbs::for('data-sanksi.edit', function ($trail) {
+    $trail->parent('data-sanksi.index');
+    $trail->push('Edit', url('data-sanksi/{id}/edit'));
+});
+
+//pelanggaran siswa
+Breadcrumbs::for('pelanggaran-siswa.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Pelanggaran siswa', route('pelanggaran-siswa.index'));
+});
+Breadcrumbs::for('pelanggaran-siswa.create', function ($trail) {
+    $trail->parent('pelanggaran-siswa.index');
+    $trail->push('Create', route('pelanggaran-siswa.create'));
+});
+Breadcrumbs::for('pelanggaran-siswa.show', function ($trail) {
+    $trail->parent('pelanggaran-siswa.index');
+    $trail->push('Detail', url('pelanggaran-siswa/{id}'));
+});
+Breadcrumbs::for('pelanggaran-siswa.edit', function ($trail) {
+    $trail->parent('pelanggaran-siswa.index');
+    $trail->push('Edit', url('pelanggaran-siswa/{id}/edit'));
+});

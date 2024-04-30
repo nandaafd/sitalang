@@ -16,7 +16,10 @@ use App\Http\Controllers\Dashboard\SiswaController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MasterPelanggaranController as WebMasterPelanggaranController;
+use App\Http\Controllers\web\PelanggaranSiswaController as WebPelanggaranSiswaController;
 use App\Http\Controllers\Web\ProfileController;
+use App\Http\Controllers\web\SanksiController as WebSanksiController;
+use App\Http\Controllers\Web\SiswaController as WebSiswaController;
 use App\Models\Sanksi;
 use Illuminate\Support\Facades\Route;
 
@@ -69,4 +72,9 @@ Route::resource('/home',HomeController::class);
 Route::group(['middleware' => ['auth']], function(){
     Route::resource('/profile',ProfileController::class);
     Route::resource('/pelanggaran', WebMasterPelanggaranController::class);
+    Route::resource('/data-sanksi', WebSanksiController::class);
+    Route::resource('/pelanggaran-siswa', WebPelanggaranSiswaController::class);
+    Route::resource('/data-siswa', WebSiswaController::class);
+    Route::get('change-password/{id}',[ChangePasswordController::class,'IndexWeb']);
+    Route::put('change-password/{id}/update',[ChangePasswordController::class, 'Update'])->name('update-password');
 });

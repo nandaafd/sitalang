@@ -17,7 +17,9 @@ class ChangePasswordController extends Controller
         $data = User::where('id',$id)->first();
         return view("dashboard.profile.change-password",compact('data'));
     }
-    
+    public function IndexFromWeb() {
+        return view("web.profile.change-password");
+    }
     public function Index() {
         return view("dashboard.profile.change-password");
     }

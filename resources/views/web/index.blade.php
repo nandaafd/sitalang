@@ -21,7 +21,7 @@
   <div class="row text-center mx-auto py-4 menu">
     <div class="col">
       <div class="menu-box mx-auto py-1">
-        <a href="{{url('/daftar-prakerin')}}" class="text-center mx-auto">
+        <a href="{{url('/pelanggaran-siswa')}}" class="text-center mx-auto">
           <img src="{{asset('images/assets/icons/prisoner.gif')}}" alt="" class="ikon-daftar img-fluid">
           <p>Pelanggaran Siswa</p>
         </a>
@@ -37,7 +37,7 @@
     </div>
     <div class="col">
       <div class="menu-box mx-auto py-1">
-        <a href="{{url('/absensi-siswa')}}" class="text-center mx-auto">
+        <a href="{{url('/data-sanksi')}}" class="text-center mx-auto">
           <img src="{{asset('images/assets/icons/curriculum.gif')}}" alt="" class="ikon-daftar img-fluid">
           <p>Master Sanksi</p>
         </a>
@@ -45,7 +45,7 @@
     </div>
     <div class="col">
       <div class="menu-box mx-auto py-1">
-        <a href="{{url('/berita')}}" class="text-center mx-auto">
+        <a href="#footer" class="text-center mx-auto">
           <img src="{{asset('images/assets/icons/contacts.gif')}}" alt="" class="ikon-daftar img img-fluid">
           <p>Kontak</p>
         </a>
@@ -53,7 +53,7 @@
     </div>
     <div class="col">
       <div class="menu-box mx-auto py-1">
-        <a href="{{url('/mitra')}}" class="text-center mx-auto">
+        <a href="{{url('/')}}" class="text-center mx-auto">
           <img src="{{asset('images/assets/icons/information.gif')}}" alt="" class="ikon-daftar img-fluid">
           <p>Informasi</p>
         </a>
@@ -136,7 +136,7 @@
                                     </thead>
                                     <tbody>
                                         
-                                        {{-- @forelse($siswas as $key => $value)
+                                        @forelse($siswas as $key => $value)
                                             @if($value->fullname)
                                                 <tr>
                                                     <td class="border-top-0 px-2 py-4">
@@ -159,7 +159,7 @@
                                             @endif
                                         @empty
                                             
-                                        @endforelse --}}
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

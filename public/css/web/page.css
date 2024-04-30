@@ -119,6 +119,32 @@
     color: black;
     background-color: yellow;
 }
+#btnPsSemua{
+    border-radius: 10px;
+}
+#pillBtn li{
+    float: none;
+}
+#pillBtn .active{
+    border: none;
+    background-color: transparent;
+    color: #3445b4;
+}
+#dropdownMore .dropdown-toggle::after {
+    display: none;
+}
+#filterMenu{
+    list-style-type: none;
+    margin-left: -30px;
+}
+#filterMenu li{
+    float: left;
+}
+
+#filterMenu  .active{
+    background-color: #3445b4;
+    border-color: #3445b4;
+}
 #frmFilter ul{
     margin-left: -30px;
 }

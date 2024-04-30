@@ -4,23 +4,22 @@
     <div class="col" id="sitalang-header">
         <div class="row">
           <div class="col-9">
-            <h4 style="font-weight: 600;"> "<span style="color:#FF6B00;">Disiplin</span> 
-                diri adalah  <span style="color:#FF6B00;">kekuatan ajaib</span>  Kegiatanmu 
-                 yang membuat kamu benar-benar tak terhentikan".
+            <h4 style="font-weight: 600;"> "Jika <span style="color:#FF6B00;">keadilan</span> 
+                binasa, kehidupan <span style="color:#FF6B00;">manusia</span>  
+                  di bumi telah kehilangan maknanya"
             </h4>
             <div class="container">
                 {{ Breadcrumbs::render() }}
             </div>
           </div>
           <div class="col-3">
-            <img id="vector2" class="img-fluid" src="{{asset('images/assets/vector2.png')}}" alt="" srcset="">
+            <img id="vector2" class="img-fluid" src="{{asset('images/assets/vector3.png')}}" alt="" srcset="">
           </div>
         </div>
     </div>
     <div class="row">
-        {{-- {{Auth::user()->siswa[0]['pembimbing_lapangan_id']}} --}}
         <div class="col" id="masterpelanggaran-page" class="">
-            <h4 class="mb-3">Data Master Pelanggaran</h4>
+            <h4 class="mb-3">Data Sanksi</h4>
             
             @if(session('success'))
                 <div class="alert alert-success">
@@ -40,61 +39,44 @@
             
             <div class="row mb-3">
                 <div class="col-10">
-                    <form action="" id="frmFilter" method="get">
+                    <form action="" method="get">
                         <div class="row">
-                            <div class="col">
-                                <ul>
-                                    <li class="me-2">
-                                        <input type="text" id="filterName" name="nama" class="form-control form-control-sm" value="{{$nama ?? ''}}" id="" placeholder="Cari nama pelanggaran..">
-                                    </li>
-                                    <li class="me-2">
-                                        <select name="kategori_id" id="filterKategori" class="form-control form-control-sm">
-                                            <option value="">--pilih kategori--</option>
-                                            @foreach ($kategori as $item)
-                                                <option {{$kat == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </li>
-                                    <li class="me-2">
-                                        <button class="btn btn-primary btn-sm me-1" type="submit">Cari</a>
-                                        <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
-                                    </li>
-                                </ul>
+                            <div class="input-group w-50">
+                                <input type="text" name="filter" class="form-control form-control-sm" value="{{$filter}}" id="" placeholder="Cari sanksi..">
+                                <button class="btn btn-primary btn-sm mr-1" type="submit"><i class="bi bi-search"></i></a>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="col-2 text-end">
-                    <a class="btn btn-primary" href="{{route('pelanggaran.create')}}" title="Tambah data master pelanggaran"><i class="bi bi-plus"></i></a>
+                    <a class="btn btn-primary" href="{{route('data-sanksi.create')}}" title="Tambah data sanksi"><i class="bi bi-plus"></i></a>
                 </div>
             </div>
             <div class="">
-                @isset($pelanggaran)
+                @isset($sanksi)
                 <table class="table table-hover">
                     <thead>
                         <tr class="">
                             <th>No</th>
-                            <th class="w-50">Nama Pelanggaran</th>
-                            <th class="">Poin</th>
-                            <th class="">Kategori</th>
+                            <th class="">Range Poin</th>
+                            <th class="w-50">Sanksi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($pelanggaran as $data)
+                        @forelse ($sanksi as $data)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$data->nama_pelanggaran}}</td>
-                                <td>{{$data->poin}}</td>
-                                <td>{{$data->Kategori->name}}</td>
+                                <td>{{$data->range_poin}}</td>
+                                <td>{{$data->sanksi}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <form action="{{ route('pelanggaran.destroy', $data->id) }}" method="POST">
+                                        <form action="{{ route('data-sanksi.destroy', $data->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" title="Hapus data" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i class="bi bi-trash3-fill"></i></button>
                                           </form>  
-                                          <a href="{{route('pelanggaran.edit', $data->id)}}" class="btn btn-success btn-sm" title="edit"><i class="bi bi-pencil"></i></a>            
+                                          <a href="{{route('data-sanksi.edit', $data->id)}}" class="btn btn-success btn-sm" title="edit"><i class="bi bi-pencil"></i></a>            
                                     </div>
                                 </td>
                             </tr>
@@ -105,7 +87,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                {{ $pelanggaran->links() ?? '' }}
+                {{ $sanksi->links() ?? '' }}
                 @endisset
             </div>
             

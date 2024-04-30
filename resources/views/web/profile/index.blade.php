@@ -35,14 +35,14 @@
                     <ul>
                         <li><span> Nama Lengkap :</span> {{$data->user->fullname}}</li>
                         <li><span>Nama Panggilan :</span>  {{$data->user->nickname}}</li>
-                        <li><span> NIP :</span> {{$data->nip_niy}}</li>
+                        <li><span> NIP :</span> {{$data->nip}}</li>
                         <li><span>Alamat :</span>  {{$data->alamat}}</li>
                         <li><span>Email :</span>  {{$data->user->email}}</li>
                         <li><span>No Telpon :</span>  {{$data->no_telp}}</li>
                     </ul>
                 @endforeach
             @endif
-            <a href="{{route('profile.edit',Auth::user()->id)}}" class="btn btn-primary my-2" id="btn-editprofil">Edit Profile</a>
+            <a href="{{route('profile.edit',Auth::id())}}" class="btn btn-primary my-2" id="btn-editprofil">Edit Profile</a>
             <div class="mb-3">
                 <form action="{{url('/logout')}}" method="POST" class="">
                     @csrf

@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
+use App\Models\Kelas;
 use App\Models\Siswa;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -42,7 +45,14 @@ class ProfileController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try {
+                $guru = Guru::where('user_id',$id)->get();
+                $siswa = Siswa::where('id',$id)->get();
+                $kelas = Kelas::all();
+        } catch (Exception $ex) {
+            return redirect()->back()->with('err','anda belum login, silahkan login terlebih dahulu');
+        }
+        return view('web.profile.edit',compact('siswa','guru','kelas'));
     }
 
     /**
