@@ -75,6 +75,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('/data-sanksi', WebSanksiController::class);
     Route::resource('/pelanggaran-siswa', WebPelanggaranSiswaController::class);
     Route::resource('/data-siswa', WebSiswaController::class);
-    Route::get('change-password/{id}',[ChangePasswordController::class,'IndexWeb']);
-    Route::put('change-password/{id}/update',[ChangePasswordController::class, 'Update'])->name('update-password');
+    Route::get('changepassword/{id}',[ChangePasswordController::class,'IndexFromWeb']);
+    Route::put('changepassword/{id}/update',[ChangePasswordController::class, 'Update'])->name('change-password');
 });

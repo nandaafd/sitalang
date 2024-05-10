@@ -64,6 +64,18 @@
     background-color: yellow;
     color: black;
 }
+.ikon-daftar{
+    height: 90px;
+    width: 90px;
+    padding: 15px 15px;
+}
+#menu-ikon{
+    text-decoration: none;  
+    color: black;
+}
+#menu-ikon:hover{
+    background-color: #fff5b1;
+}
 #profil-page{
     background-color: white;
     margin-top: 5%;

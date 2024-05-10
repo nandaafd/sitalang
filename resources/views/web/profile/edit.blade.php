@@ -2,6 +2,17 @@
 @section('content')
 <div id="profil-page" class="mx-auto mb-5">
     <h2 class="">Edit Profile</h2>
+    @if(session('success'))
+      <div class="alert alert-success">
+          {{ session('success') }}
+      </div>
+    @endif
+    @if(session('err'))
+      <div class="alert alert-success">
+          {{ session('err') }}
+      </div>
+    @endif
+    
     @if (Auth::user()->role->name == 'siswa')
         @foreach ($siswa as $data)
         <form action="{{route('profile.update',$data->id)}}" method="post" enctype="multipart/form-data">
@@ -13,19 +24,15 @@
             <input type="text" hidden name="user_id" value="{{$data->user_id}}">
             <div class="mb-3">
               <label for="nama_lengkap" class="form-label">Nama Lengkap</label> 
-              <input type="text" class="form-control" id="nama" name="nama_lengkap" value="{{$data->user->fullname}}">
+              <input type="text" class="form-control" id="nama" name="fullname" value="{{$data->user->fullname}}">
             </div>
             <div class="mb-3">
               <label for="nama_panggilan" class="form-label">Nama Panggilan</label> 
-              <input type="text" class="form-control" id="nama_panggilan" name="nama_panggilan" value="{{$data->user->nickname}}">
+              <input type="text" class="form-control" id="nama_panggilan" name="nickname" value="{{$data->user->nickname}}">
             </div>
-            <div class="mb-3">
-                <label for="nisn" class="form-label">NISN</label>
-                <input type="text" class="form-control" id="nisn" name="nisn" value="{{$data->nisn}}">
-              </div>
               <div class="mb-3">
                 <label for="kelas" class="form-label">Kelas</label>
-                <select class="form-select" aria-label="Default select example" name="kelas">
+                <select class="form-select" aria-label="Default select example" name="kelas_id">
                   @if ($data->kelas_id == null)
                     <option value="">Belum punya kelas</option>
                     @foreach ($kelas as $kls) 
@@ -44,20 +51,32 @@
               </div>
               <div class="mb-3">
                 <label for="no_telpon" class="form-label">No Telpon</label>
-                <input type="text" class="form-control" id="no_telpon" name="no_telpon" value="{{$data->no_telpon}}">
+                <input type="number" class="form-control" id="no_telp" name="no_telp" value="{{$data->no_telp}}">
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email" value="{{$data->user->email}}">
+                <label for="email" class="form-label">Tempat lahir</label>
+                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{$data->tempat_lahir}}">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Tanggal lahir</label>
+                <input type="date" class="form-control" id="tempat_lahir" name="tanggal_lahir" value="{{$data->tanggal_lahir}}">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Nama wali</label>
+                <input type="text" class="form-control" id="nama_ortu" name="nama_ortu" value="{{$data->nama_ortu}}">
+              </div>
+              <div class="mb-3">
+                <label for="no_telpon" class="form-label">No Telpon Wali</label>
+                <input type="number" class="form-control" id="telp_ortu" name="telp_ortu" value="{{$data->telp_ortu}}">
               </div>
               <div class="mb-3">
                 <label for="foto_profil" class="form-label">Foto Profil <span style="font-size:12px;">*jika ada/tidak wajib</span></label>
                 @if ($data->foto == null)
-                  <p class="">data ini tidak memiliki gambar</p>
+                  <p class="">anda tidak memasang foto profil</p>
                 @else
                   <img src="{{asset('storage/'. $data->foto)}}" alt="" class="d-block mb-3" style="max-width:170px;">
                 @endif
-                <input type="file" class="form-control" id="foto_profil" name="foto_profil">
+                <input type="file" class="form-control" id="foto_profil" name="foto">
               </div>
               <p>Pastikan data yang anda masukkan sudah benar!
                 </p>    
@@ -74,39 +93,39 @@
             <input type="text" hidden name="guru_form" id="" value="guru_form">
             <div class="mb-3">
               <label for="nama" class="form-label">Nama Lengkap</label> 
-              <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="{{$data->user->fullname}}">
+              <input type="text" class="form-control" id="fullname" name="fullname" value="{{$data->user->fullname}}">
             </div>
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama Panggilan</label> 
-                <input type="text" class="form-control" id="nama_panggilan" name="nama_panggilan" value="{{$data->user->nickname}}">
+                <input type="text" class="form-control" id="nickname" name="nickname" value="{{$data->user->nickname}}">
               </div>
             <div class="mb-3">
-                <label for="nip" class="form-label">NIP/NIY</label>
-                <input type="text" class="form-control" id="nip" name="nip" value="{{$data->nip}}">
+                <label for="nip" class="form-label">NIP</label>
+                <input type="number" class="form-control" id="nip" name="nip" value="{{$data->nip}}">
+              </div>
+              <div class="mb-3">
+                <label for="nama" class="form-label">Alamat</label> 
+                <input type="text" class="form-control" id="alamat" name="alamat" value="{{$data->alamat}}">
               </div>
               <div class="mb-3">
                 <label for="no_telpon" class="form-label">No Telpon</label>
-                <input type="text" class="form-control" id="no_telpon" name="no_telpon" value="{{$data->no_telpon}}">
+                <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{$data->no_telp}}">
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email" value="{{$data->user->email}}">
-              </div>
-              <div class="mb-3">
-                <label for="foto_profil" class="form-label">Foto Profil <span style="font-size:12px;">*jika ada/tidak wajib</span></label>
+                <label for="foto" class="form-label">Foto Profil <span style="font-size:12px;">*jika ada/tidak wajib</span></label>
                 @if ($data->foto == null)
-                  <p class="">data ini tidak memiliki gambar</p>
+                  <p class="">anda tidak memasang foto profile</p>
                 @else
                   <img src="{{asset('storage/'. $data->foto)}}" alt="" class="d-block mb-3" style="max-width:170px;">
                 @endif
-                <input type="file" class="form-control" id="foto_profil" name="foto_profil">
+                <input type="file" class="form-control" id="foto_profil" name="foto">
               </div>  
               <button type="submit" id="btn-ubahpass" class="btn btn-primary w-100">Simpan</button>
           </form>
         @endforeach
 
     @endif
-    <a href="{{url('/ubah-password')}}" class="btn btn-outline-danger my-2 w-100">Ubah Password</a>
+    <a href="{{url('/changepassword',Auth::id())}}" class="btn btn-outline-danger my-2 w-100">Ubah Password</a>
 </div>
 </div>
 

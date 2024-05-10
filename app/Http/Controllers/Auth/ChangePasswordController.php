@@ -17,8 +17,9 @@ class ChangePasswordController extends Controller
         $data = User::where('id',$id)->first();
         return view("dashboard.profile.change-password",compact('data'));
     }
-    public function IndexFromWeb() {
-        return view("web.profile.change-password");
+    public function IndexFromWeb($id) {
+        $data = User::where('id',$id)->first();
+        return view("web.profile.change-password",compact('data'));
     }
     public function Index() {
         return view("dashboard.profile.change-password");
@@ -76,6 +77,7 @@ class ChangePasswordController extends Controller
         } catch (Exception $ex) {
             return redirect()->back()->with('err', 'gagal ganti password, '.$ex->getMessage());
         }
+        
         return redirect()->back()->with('success', 'Berhasil mengganti password '.$user->fullname);
         
     }

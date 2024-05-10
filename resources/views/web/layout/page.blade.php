@@ -42,6 +42,7 @@
     @component('components.modal_md')
         @include('components.modal_md')
     @endcomponent
+    @include('components.menu')
     <footer class="main-footer">
         @include('web.partials.footer')
     </footer>

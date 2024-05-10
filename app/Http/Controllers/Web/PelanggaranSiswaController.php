@@ -37,7 +37,7 @@ class PelanggaranSiswaController extends Controller
                 })
                 ->orderBy('tanggal', 'desc');
             
-
+                
             if ($request->semua) {
                 $pelsis = $query->paginate(10);
             }
@@ -66,8 +66,8 @@ class PelanggaranSiswaController extends Controller
             }
             else {
                 $pelsis = $query->paginate(10);
+                
             }
-
             $pelsis = $query->paginate(10);
 
             if ($pelsis->isEmpty()) {
@@ -80,7 +80,15 @@ class PelanggaranSiswaController extends Controller
             return view('web.pelanggaran-siswa.index', compact('pelsis','kategori','kat','pelanggaran','pel','nama'));
         }
         else {
-            return view('web.pelanggaran-siswa.indexsiswa', compact('pelsis','kategori','kat','pelanggaran','pel','nama'));
+            $pelsis->where('user_id',Auth::user()->id);
+            $siswa_id = Siswa::where('user_id',Auth::id())->first();
+            $pelanggaran = PelanggaranSiswa::with('pelanggaran')->where('is_deleted',false)->where('siswa_id',$siswa_id->id)->get();
+            $tot = [];
+            foreach ($pelanggaran as $key => $value) {
+                array_push($tot, $value->pelanggaran->poin);
+            }
+            $total_poin = array_sum($tot);
+            return view('web.pelanggaran-siswa.indexsiswa', compact('pelsis','kategori','kat','pelanggaran','pel','nama','total_poin'));
         }
         
     }

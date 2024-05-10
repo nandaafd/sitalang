@@ -1,9 +1,21 @@
 @extends('web.layout.page')
 @section('content')
+
 <div class="" id="change-password" class="mx-auto mb-5 d-flex">
     <h2>Ubah Password</h2>
-<form method="POST" action="{{ route('update-password',$data->id) }}">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if(session('err'))
+        <div class="alert alert-danger">
+            {{ session('err') }}
+        </div>
+    @endif
+<form method="POST" action="{{ route('change-password',$data->id) }}">
     @csrf
+    @method('put')
     <div class="mb-3">
         <label for="current_password">Password Sekarang</label>
         <input class="form-control" id="current_password" type="password" name="current_password">

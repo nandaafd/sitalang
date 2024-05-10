@@ -135,7 +135,7 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                               <li>
-                                                <form action="{{ route('pelanggaransiswa.destroy', $data->id) }}" method="POST">
+                                                <form action="{{ route('pelanggaran-siswa.destroy', $data->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger" title="Hapus data" onclick="return confirm('Apakah anda yakin ingin menghapus?')"><i class="bi bi-trash3-fill mr-2"></i> Hapus</button>
