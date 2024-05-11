@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class PelanggaranSiswaController extends Controller
@@ -99,17 +100,22 @@ class PelanggaranSiswaController extends Controller
      */
     public function create()
     {
-        try {
-            $siswa = Siswa::with('user')->where('is_deleted',false)->get();
-            $pelanggaran = MasterPelanggaran::where('is_deleted',false)->get();
-            $sanksi = Sanksi::where('is_deleted',false)->get();
-            if ($siswa->count() == 0 || $pelanggaran->count() == 0 || $sanksi->count() == 0) {
-                throw new Exception();
+        if (Gate::allows('guru')) {
+            try {
+                $siswa = Siswa::with('user')->where('is_deleted',false)->get();
+                $pelanggaran = MasterPelanggaran::where('is_deleted',false)->get();
+                $sanksi = Sanksi::where('is_deleted',false)->get();
+                if ($siswa->count() == 0 || $pelanggaran->count() == 0 || $sanksi->count() == 0) {
+                    throw new Exception();
+                }
+            } catch (Exception $ex) {
+                return redirect()->route('pelanggaran-siswa.index')->with('err','gagal menambah, data tidak dapat ditemukan');
             }
-        } catch (Exception $ex) {
-            return redirect()->route('pelanggaran-siswa.index')->with('err','gagal menambah, data tidak dapat ditemukan');
+            return view('web.pelanggaran-siswa.create',compact('siswa','pelanggaran','sanksi'));
         }
-        return view('web.pelanggaran-siswa.create',compact('siswa','pelanggaran','sanksi'));
+        else{
+            abort(404, 'Not Found');
+        }
     }
 
     /**

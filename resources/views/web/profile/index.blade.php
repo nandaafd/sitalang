@@ -16,9 +16,9 @@
             @if (Auth::user()->role->name == 'siswa')
                 @foreach ($siswa as $data)
                     @if ($data->foto == null)
-                        <img class="my-3 mx-auto" id="foto-profil" src="https://api.multiavatar.com/Binx Bond.png" alt="">
+                        <img class="my-3 mx-auto" id="foto-profil" src="{{asset('images/assets/blank-profile-picture.jpg')}}" alt="">
                     @else
-                        <img class="my-3 mx-auto" id="foto-profil" src="{{asset('storage/'. $data->foto)}}" alt="">
+                        <img class="my-3 mx-auto" id="foto-profil" src="{{asset('storage/'. $data->foto)}}" onerror="this.src='{{asset('/images/assets/blank-profile-picture.jpg')}}'" alt="">
                     @endif
                     @if ($total_poin <= 100)
                         <div class="mb-3 bg-success text-white w-50 rounded py-2 mx-auto">
@@ -44,11 +44,11 @@
                 @endforeach
             @elseif(Auth::user()->role->name == 'guru')
                 @foreach ($guru as $data)
-                    @if ($data->foto == null)
-                        <img class="my-3 mx-auto" id="foto-profil" src="https://api.multiavatar.com/Binx Bond.png" alt="">
-                    @else
-                        <img class="my-3 mx-auto" id="foto-profil" src="{{asset('storage/'. $data->foto)}}" alt="">
-                    @endif
+                @if ($data->foto == null)
+                    <img class="my-3 mx-auto" id="foto-profil" src="{{asset('images/assets/blank-profile-picture.jpg')}}" alt="">
+                @else
+                    <img class="my-3 mx-auto" id="foto-profil" src="{{asset('storage/'. $data->foto)}}" onerror="this.src='{{asset('/images/assets/blank-profile-picture.jpg')}}'" alt="">
+                @endif
                     <ul>
                         <li><span> Nama Lengkap :</span> {{$data->user->fullname}}</li>
                         <li><span>Nama Panggilan :</span>  {{$data->user->nickname}}</li>

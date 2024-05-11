@@ -14,6 +14,8 @@
     <li><a href="{{url('/pelanggaransiswa')}}"><img src="{{asset('images/assets/icons/prisoner.gif')}}" alt="" class="">Pelanggaran Siswa</a></li>
     <li><a href="{{url('/sanksi')}}"><img src="{{asset('images/assets/icons/curriculum.gif')}}" alt="" class="">Lihat Master Sanksi</a></li>
     <li><a href="{{url('/pelanggaran')}}"><img src="{{asset('images/assets/icons/folder.gif')}}" alt="" class="">Lihat Master Pelanggaran</a></li>
-    <li><a href="{{url('/siswa')}}"><img src="{{asset('images/assets/icons/groom.gif')}}" alt="" class="">Lihat Data Siswa</a></li>
+    @can('guru')
+        <li><a href="{{url('/siswa')}}"><img src="{{asset('images/assets/icons/groom.gif')}}" alt="" class="">Lihat Data Siswa</a></li>
+    @endcan
 </ul>
 </div>
