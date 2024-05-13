@@ -190,3 +190,21 @@ Breadcrumbs::for('pelanggaran-siswa.edit', function ($trail) {
     $trail->parent('pelanggaran-siswa.index');
     $trail->push('Edit', url('pelanggaran-siswa/{id}/edit'));
 });
+
+//data siswa
+Breadcrumbs::for('data-siswa.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Data siswa', route('data-siswa.index'));
+});
+Breadcrumbs::for('data-siswa.create', function ($trail) {
+    $trail->parent('data-siswa.index');
+    $trail->push('Create', route('data-siswa.create'));
+});
+Breadcrumbs::for('data-siswa.show', function ($trail) {
+    $trail->parent('data-siswa.index');
+    $trail->push('Detail', url('data-siswa/{id}'));
+});
+Breadcrumbs::for('data-siswa.edit', function ($trail) {
+    $trail->parent('data-siswa.index');
+    $trail->push('Edit', url('data-siswa/{id}/edit'));
+});

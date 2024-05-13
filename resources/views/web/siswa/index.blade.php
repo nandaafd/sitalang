@@ -9,7 +9,7 @@
                   di bumi telah kehilangan maknanya"
             </h4>
             <div class="container">
-                {{-- {{ Breadcrumbs::render() }} --}}
+                {{ Breadcrumbs::render() }}
             </div>
           </div>
           <div class="col-3">
@@ -106,6 +106,13 @@
     </div>
 </div>
 <script>
+    $(".btn-detail").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        $('#modal-lg').modal("show");
+        $('#modal-lg-label').text("Profil Siswa");
+        $('.modal-lg-body').load('/data-siswa/'+id)
+    });
     $(document).ready(function(e) {
         $('#btnReset').click(function (e) {
             e.preventDefault();

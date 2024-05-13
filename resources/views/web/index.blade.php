@@ -3,18 +3,46 @@
 
 <section id="hero" class="mx-auto">
   <div class="row">
-    <div class="col-md-6" id="tagline">
-      <h1 class="text">
-        Tak Perlu  <span class="fw-bold"> Cemas</span>, 
-        Kini Anda Dapat Mencatat  <span class="fw-bold">Pelanggaran Siswa</span> Dengan Sangat Mudah</span>
-      </h1>
-      <p class="text">Kini anda tak perlu repot untuk mencatat pelanggaran siswa, karena kini 
-        anda dapat mencatat dan melihat pelanggaran siswa dengan sangat mudah dan dimana saja.
-      </p>
-      <a href="{{url('/daftar-prakerin')}}" class="btn btn-primary" id="btn-daftar-hero">Catat Sekarang</a>
-    </div>
-      <img src="{{asset('images/assets/hero-person.png')}}" alt="" srcset="" id="person-hero" class="position-absolute end-0">
-      <img src="{{asset('images/assets/eclipse.png')}}" alt="" srcset="" id="eclipse" class="position-absolute">
+    @if(!Auth::user())
+        <div class="col-md-6" id="tagline">
+            <h1 class="text">
+                Tak Perlu  <span class="fw-bold"> Cemas</span>, 
+                Kini Anda Dapat Melihat  <span class="fw-bold">Pelanggaran Anda</span> Dengan Sangat Mudah</span>
+            </h1>
+            <p class="text">Kini anda tak perlu repot untuk meilhat rekap pelanggaran anda, karena kini 
+                anda dapat melihatnya dengan sangat mudah, kapan saja, dan dimana saja.
+            </p>
+            <a href="{{url('/pelanggaran-siswa')}}" class="btn btn-primary" id="btn-daftar-hero">Lihat Sekarang</a>
+        </div>
+        <img src="{{asset('images/assets/hero-person.png')}}" alt="" srcset="" id="person-hero" class="position-absolute end-0">
+        <img src="{{asset('images/assets/eclipse.png')}}" alt="" srcset="" id="eclipse" class="position-absolute">
+    @elseif(Auth::user()->role->name == 'guru')
+        <div class="col-md-6" id="tagline">
+            <h1 class="text">
+                Tak Perlu  <span class="fw-bold"> Cemas</span>, 
+                Kini Anda Dapat Mencatat  <span class="fw-bold">Pelanggaran Siswa</span> Dengan Sangat Mudah</span>
+            </h1>
+            <p class="text">Kini anda tak perlu repot untuk mencatat pelanggaran siswa, karena kini 
+                anda dapat mencatat dan melihat pelanggaran siswa dengan sangat mudah dan dimana saja.
+            </p>
+            <a href="{{url('/pelanggaran-siswa/create')}}" class="btn btn-primary" id="btn-daftar-hero">Catat Sekarang</a>
+        </div>
+        <img src="{{asset('images/assets/hero-person.png')}}" alt="" srcset="" id="person-hero" class="position-absolute end-0">
+        <img src="{{asset('images/assets/eclipse.png')}}" alt="" srcset="" id="eclipse" class="position-absolute">
+    @elseif(Auth::user()->role->name == 'siswa') 
+        <div class="col-md-6" id="tagline">
+            <h1 class="text">
+                Tak Perlu  <span class="fw-bold"> Cemas</span>, 
+                Kini Anda Dapat Melihat  <span class="fw-bold">Pelanggaran Anda</span> Dengan Sangat Mudah</span>
+            </h1>
+            <p class="text">Kini anda tak perlu repot untuk meilhat rekap pelanggaran anda, karena kini 
+                anda dapat melihatnya dengan sangat mudah, kapan saja, dan dimana saja.
+            </p>
+            <a href="{{url('/pelanggaran-siswa')}}" class="btn btn-primary" id="btn-daftar-hero">Lihat Sekarang</a>
+        </div>
+        <img src="{{asset('images/assets/hero-person.png')}}" alt="" srcset="" id="person-hero" class="position-absolute end-0">
+        <img src="{{asset('images/assets/eclipse.png')}}" alt="" srcset="" id="eclipse" class="position-absolute">  
+    @endif
   </div>
 </section>  
 <section id="menu-area" class="my-4">
@@ -25,24 +53,26 @@
           <img src="{{asset('images/assets/icons/prisoner.gif')}}" alt="" class="ikon-daftar img-fluid">
           <p>Pelanggaran Siswa</p>
         </a>
-    </div>
-    </div>
-    <div class="col">
-      <div class="menu-box mx-auto py-1">
-        <a href="{{url('/pelanggaran')}}" class="text-center mx-auto">
-          <img src="{{asset('images/assets/icons/folder.gif')}}" alt="" class="ikon-daftar img-fluid">
-          <p>Master Pelanggaran</p>
-        </a>
       </div>
     </div>
-    <div class="col">
-      <div class="menu-box mx-auto py-1">
-        <a href="{{url('/data-sanksi')}}" class="text-center mx-auto">
-          <img src="{{asset('images/assets/icons/curriculum.gif')}}" alt="" class="ikon-daftar img-fluid">
-          <p>Master Sanksi</p>
-        </a>
-      </div>
-    </div>
+    @can('guru')
+        <div class="col">
+        <div class="menu-box mx-auto py-1">
+            <a href="{{url('/pelanggaran')}}" class="text-center mx-auto">
+            <img src="{{asset('images/assets/icons/folder.gif')}}" alt="" class="ikon-daftar img-fluid">
+            <p>Master Pelanggaran</p>
+            </a>
+        </div>
+        </div>
+        <div class="col">
+        <div class="menu-box mx-auto py-1">
+            <a href="{{url('/data-sanksi')}}" class="text-center mx-auto">
+            <img src="{{asset('images/assets/icons/curriculum.gif')}}" alt="" class="ikon-daftar img-fluid">
+            <p>Master Sanksi</p>
+            </a>
+        </div>
+        </div>
+    @endcan
     <div class="col">
       <div class="menu-box mx-auto py-1">
         <a href="#footer" class="text-center mx-auto">

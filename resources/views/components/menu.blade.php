@@ -10,31 +10,41 @@
                 <div class="row text-center">
                     <div class="col">
                       <div class="mx-auto py-1">
-                        <a href="{{url('/daftar-prakerin')}}" id="menu-ikon" class="text-center mx-auto">
+                        <a href="{{url('/pelanggaran-siswa')}}" id="menu-ikon" class="text-center mx-auto">
                             <img src="{{asset('images/assets/icons/prisoner.gif')}}" alt="" class="ikon-daftar">
                             <p>Pelanggaran Siswa</p>
                         </a>
                     </div>
                     </div>
-                    <div class="col">
-                      <div class="mx-auto py-1">
-                        <a href="{{url('/pelanggaran')}}" id="menu-ikon" class="text-center mx-auto">
-                            <img src="{{asset('images/assets/icons/folder.gif')}}" alt="" class="ikon-daftar">
-                            <p>Master Pelanggaran</p>
-                        </a>
+                    @can('guru')
+                      <div class="col">
+                        <div class="mx-auto py-1">
+                          <a href="{{url('/pelanggaran')}}" id="menu-ikon" class="text-center mx-auto">
+                              <img src="{{asset('images/assets/icons/folder.gif')}}" alt="" class="ikon-daftar">
+                              <p>Master Pelanggaran</p>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col">
-                      <div class="mx-auto py-1">
-                        <a href="{{url('/absensi-siswa')}}" id="menu-ikon" class="text-center mx-auto">
-                            <img src="{{asset('images/assets/icons/curriculum.gif')}}" alt="" class="ikon-daftar">
-                            <p>Master Sanksi</p>
-                        </a>
+                      <div class="col">
+                        <div class="mx-auto py-1">
+                          <a href="{{url('/data-sanksi')}}" id="menu-ikon" class="text-center mx-auto">
+                              <img src="{{asset('images/assets/icons/curriculum.gif')}}" alt="" class="ikon-daftar">
+                              <p>Master Sanksi</p>
+                          </a>
+                        </div>
                       </div>
-                    </div>
+                      <div class="col">
+                        <div class="mx-auto py-1">
+                          <a href="{{url('/data-siswa')}}" id="menu-ikon" class="text-center mx-auto">
+                              <img src="{{asset('images/assets/icons/groom.gif')}}" alt="" class="ikon-daftar">
+                              <p>Data Siswa</p>
+                          </a>
+                        </div>
+                      </div>
+                    @endcan
                     <div class="col">
                       <div class="mx-auto py-1">
-                        <a href="{{url('/berita')}}" id="menu-ikon" class="text-center mx-auto">
+                        <a href="#footer" id="menu-ikon" class="text-center mx-auto">
                             <img src="{{asset('images/assets/icons/contacts.gif')}}" alt="" class="ikon-daftar ">
                             <p>Kontak</p>
                         </a>
@@ -42,7 +52,7 @@
                     </div>
                     <div class="col">
                       <div class="mx-auto py-1">
-                        <a href="{{url('/mitra')}}" id="menu-ikon" class="text-center mx-auto">
+                        <a href="" id="menu-ikon" class="text-center mx-auto">
                             <img src="{{asset('images/assets/icons/information.gif')}}" alt="" class="ikon-daftar ">
                             <p>Informasi</p>
                         </a>

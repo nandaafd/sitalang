@@ -87,7 +87,7 @@ class ProfileController extends Controller
                     'no_telp'=>'required',
                     'foto'=>'image|file|max:2048'
                 ]);
-                if ($request->hasFile('foto_profil')) {
+                if ($request->hasFile('foto')) {
                     if ($request->oldImage) {
                         Storage::delete($request->oldImage);
                     }
@@ -115,7 +115,7 @@ class ProfileController extends Controller
                 'no_telp'=>'required',
                 'foto'=>'image|file|max:2048'
                 ]);
-                if ($request->hasFile('foto_profil')) {
+                if ($request->hasFile('foto')) {
                     if ($request->oldImage) {
                         Storage::delete($request->oldImage);
                     }

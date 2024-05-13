@@ -41,6 +41,7 @@ class HomeController extends Controller
 
         //get top 10 pelanggaran terbanyak
         $siswas = PelanggaranSiswa::select('siswa_id', DB::raw('count(*) as total'))
+                ->where('is_deleted',false)
                 ->groupBy('siswa_id')
                 ->orderByDesc('total')
                 ->limit(10)
