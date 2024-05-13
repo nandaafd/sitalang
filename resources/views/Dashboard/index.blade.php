@@ -124,7 +124,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($siswas as $key => $value)
+                                    @forelse($siswas as $key => $value)
                                         @if($value->fullname)
                                             <tr>
                                                 <td class="border-top-0 px-2 py-4">
@@ -145,7 +145,9 @@
                                                     <td class="border-top-0 text-muted px-2 py-4 font-14">{{$value->kelas}}</td>
                                                 </tr>
                                         @endif
-                                    @endforeach
+                                    @empty
+                                            
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

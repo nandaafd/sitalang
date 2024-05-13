@@ -64,7 +64,7 @@ function handleOnPasteOtp(e) {
 
 //--timer otp--
 $("#resendOtp").click(function () {
-    var time = 10; // Waktu tunggu dalam detik
+    var time = 60; // Waktu tunggu dalam detik
     var resendButton = $('#resendOtp');
     var timerElement = $('#timer');
 
@@ -111,7 +111,7 @@ $(".btnSubmitRegister").click(function () {
         return;
     }
     timerOtp = true;
-    var time = 10; // Waktu tunggu dalam detik
+    var time = 60; // Waktu tunggu dalam detik
     var resendButton = $('#resendOtp');
     var timerElement = $('#timer');
 

@@ -102,7 +102,7 @@
               <div class="mb-3">
                 <input type="password" class="form-control  @error('confirm_password') is-invalid @enderror" id="confirm_password" placeholder="Confirm Password" name="confirm_password" value="">
               </div>
-            <button type="submit" class="btn btn-primary btnAddSiswa"><i class="bi bi-save"></i> Buat Akun</button>
+            <button type="submit" class="btn btn-primary btnAddSiswa btnSubmitRegister"><i class="bi bi-save"></i> Buat Akun</button>
         </form>
     </div>
 </div>
