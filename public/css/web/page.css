@@ -23,6 +23,12 @@
     padding: 3% 3%;
     
 }
+.pageTittle{
+    font-size: 22px;
+}
+.headerQuote{
+    font-size: 25px;
+}
 #sitalang-header{
     background-color: white;
     margin-top: 5%;
@@ -149,6 +155,9 @@
     list-style-type: none;
     margin-left: -30px;
 }
+.filterMenu{
+    display: block;
+}
 #filterMenu li{
     float: left;
 }
@@ -156,6 +165,12 @@
 #filterMenu  .active{
     background-color: #3445b4;
     border-color: #3445b4;
+}
+.btnFilterModal{
+    display: none;
+}
+.frmFilter{
+    display: block;
 }
 #frmFilter ul{
     margin-left: -30px;
@@ -316,7 +331,7 @@ ul li{
     text-transform: capitalize;
     text-align: center;
 }
-@media screen and (max-width : 500px) {
+@media screen and (max-width : 800px) {
     *{
         font-size: 12px;
     }
@@ -357,5 +372,20 @@ ul li{
     }
     #btn-addabsen i{
         font-size: 10px;
+    }
+    .pageTittle{
+        font-size: 12px;
+    }
+    .headerQuote{
+        font-size: 12px;
+    }
+    .btnFilterModal{
+        display: block;
+    }
+    .frmFilter{
+        display: none;
+    }
+    .filterMenu{
+        display: none;
     }
 }

@@ -4,10 +4,10 @@
     <div class="col" id="sitalang-header">
         <div class="row">
           <div class="col-9">
-            <h4 style="font-weight: 600;"> "<span style="color:#FF6B00;">Disiplin</span> 
+            <div style="font-weight: 600;" class="headerQuote"> "<span style="color:#FF6B00;">Disiplin</span> 
                 diri adalah  <span style="color:#FF6B00;">kekuatan ajaib</span>  Kegiatanmu 
                  yang membuat kamu benar-benar tak terhentikan".
-            </h4>
+            </div>
             <div class="container">
                 {{ Breadcrumbs::render() }}
             </div>
@@ -20,7 +20,7 @@
     <div class="row">
         {{-- {{Auth::user()->siswa[0]['pembimbing_lapangan_id']}} --}}
         <div class="col" id="masterpelanggaran-page" class="">
-            <h4 class="mb-3">Data Master Pelanggaran</h4>
+            <div class="mb-3 pageTittle">Data Master Pelanggaran</div>
             
             @if(session('success'))
                 <div class="alert alert-success">
@@ -38,9 +38,10 @@
                 </div>  
             @endif
             
-            <div class="row mb-3">
+            <div class="row mb-3 filterBox">
                 <div class="col-10">
-                    <form action="" id="frmFilter" method="get">
+                    <button class="btn btn-outline-primary btnFilterModal" data-bs-toggle="modal" data-bs-target="#modalFilter"><i class="bi bi-funnel"></i></button>
+                    <form action="" id="frmFilter" class="frmFilter" method="get">
                         <div class="row">
                             <div class="col">
                                 <ul>
@@ -112,6 +113,44 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modalFilter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <form action="" id="frmFilter" method="get">
+                <div class="row">
+                    <div class="col">
+                        <ul>
+                            <li class="me-2">
+                                <input type="text" id="filterName" name="nama" class="form-control form-control-sm" value="{{$nama ?? ''}}" id="" placeholder="Cari nama pelanggaran..">
+                            </li>
+                            <li class="me-2">
+                                <select name="kategori_id" id="filterKategori" class="form-control form-control-sm">
+                                    <option value="">--pilih kategori--</option>
+                                    @foreach ($kategori as $item)
+                                        <option {{$kat == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                            </li>
+                            <li class="me-2">
+                                <button class="btn btn-primary btn-sm me-1" type="submit">Cari</a>
+                                <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
     $(document).ready(function(e) {
         $('#btnReset').click(function (e) {
@@ -122,6 +161,7 @@
                 $("#frmFilter").off("submit").submit();
             }, 300);
         })
-    })
+    
+});
 </script>
 @endsection

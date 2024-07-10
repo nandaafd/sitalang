@@ -4,10 +4,10 @@
     <div class="col" id="sitalang-header">
         <div class="row">
           <div class="col-9">
-            <h4 style="font-weight: 600;"> "Jika <span style="color:#FF6B00;">keadilan</span> 
+            <div style="font-weight: 600;" class="headerQuote"> "Jika <span style="color:#FF6B00;">keadilan</span> 
                 binasa, kehidupan <span style="color:#FF6B00;">manusia</span>  
                   di bumi telah kehilangan maknanya"
-            </h4>
+            </div>
             <div class="container">
                 {{ Breadcrumbs::render() }}
             </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col" id="masterpelanggaran-page" class="">
-            <h4 class="mb-3">Pelanggaran Siswa</h4>
+            <div class="mb-3 pageTittle">Pelanggaran Siswa</div>
             
             @if(session('success'))
                 <div class="alert alert-success">
@@ -39,7 +39,8 @@
             
             <div class="row mb-3">
                 <div class="col-10">
-                    <form action="" id="frmFilter" method="get">
+                <button class="btn btn-outline-primary btnFilterModal" data-bs-toggle="modal" data-bs-target="#modalFilter"><i class="bi bi-funnel"></i></button>
+                    <form action="" id="frmFilter" class="frmFilter" method="get">
                         <ul id="filterField">
                             <li class="me-2">
                                 <input type="text" id="filterName" name="nama" class="form-control form-control-sm" value="{{$nama ?? ''}}" id="" placeholder="Cari nama siswa..">
@@ -75,7 +76,7 @@
             </div>
             <div class="row w-50 mb-3">
                 <div class="col">
-                    <ul id="filterMenu">
+                    <ul id="filterMenu" class="filterMenu">
                         <li class="me-2">
                             <form action="" method="get">
                                 <input type="submit" id="btnPsSemua" name="semua" class="btn btn-outline-secondary btn-sm {{ request()->has('semua') ? 'active' : '' }}" value="Semua">
@@ -161,6 +162,90 @@
             
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalFilter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <form action="" id="frmFilter" method="get">
+                    <ul id="filterField">
+                        <li class="me-2 mb-2">
+                            <input type="text" id="filterName" name="nama" class="form-control form-control-sm" value="{{$nama ?? ''}}" id="" placeholder="Cari nama siswa..">
+                        </li>
+                        <li class="me-2 mb-2">
+                            <select name="pelanggaran_id" id="filterPelanggaran" class="form-control form-control-sm">
+                                <option value="">--pilih pelanggaran--</option>
+                                @foreach ($pelanggaran as $item)
+                                    <option {{$pel == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->nama_pelanggaran}}</option>
+                                @endforeach
+                            </select>
+                        </li>
+                        <li class="me-2 mb-2">
+                            <select name="kategori_id" id="filterKategori" class="form-control form-control-sm">
+                                <option value="">--pilih kategori--</option>
+                                @foreach ($kategori as $item)
+                                    <option {{$kat == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </li>
+                        <li class="me-2 mb-2">
+                            <button class="btn btn-primary btn-sm" type="submit">Cari</a>
+                        </li>
+                        <li class="me-2 mb-2">
+                            <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="col-sm-12 mt-2">
+                <ul id="filterMenu">
+                    <li class="me-2">
+                        <form action="" method="get">
+                            <input type="submit" id="btnPsSemua" name="semua" class="btn btn-outline-secondary btn-sm {{ request()->has('semua') ? 'active' : '' }}" value="Semua">
+                        </form>
+                    </li>
+                    <li class="me-2">
+                        <form action="" method="get">
+                            <input type="submit" id="btnPsSemua" name="this_year" class="btn btn-outline-secondary btn-sm {{ request()->has('this_year') ? 'active' : '' }}" value="Tahun Ini">
+                        </form>
+                    </li>
+                    <li class="me-2">
+                        <form action="" method="get">
+                            <input type="submit" id="btnPsSemua" name="this_month" class="btn btn-outline-secondary btn-sm {{ request()->has('this_month') ? 'active' : '' }}" value="Bulan Ini">
+                        </form>
+                    </li>
+                    <li class="me-2">
+                        <form action="" method="get">
+                            <div class="dropdown">
+                                <button id="btnPsSemua" class="btn btn-outline-secondary btn-sm dropdown-toggle {{ request()->has('other') ? 'active' : '' }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Lainnya
+                                </button>
+                                <ul class="dropdown-menu" id="pillBtn">
+                                    <li><input type="submit" name="other" class="btn w-100 {{ request('other') == 'Minggu ini' ? 'active' : '' }}" value="Minggu ini"></li>
+                                    <li><input type="submit" name="other" class="btn w-100 {{ request('other') == 'Bulan lalu' ? 'active' : '' }}" value="Bulan lalu"></li>
+                                    <li><input type="submit" name="other" class="btn w-100 {{ request('other') == 'Tahun lalu' ? 'active' : '' }}" value="Tahun lalu"></li>
+                                </ul>
+                                </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+            
+            
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
     $(document).ready(function(e) {

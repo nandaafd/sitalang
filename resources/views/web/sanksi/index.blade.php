@@ -4,10 +4,10 @@
     <div class="col" id="sitalang-header">
         <div class="row">
           <div class="col-9">
-            <h4 style="font-weight: 600;"> "Jika <span style="color:#FF6B00;">keadilan</span> 
+            <div style="font-weight: 600;" class="headerQuote"> "Jika <span style="color:#FF6B00;">keadilan</span> 
                 binasa, kehidupan <span style="color:#FF6B00;">manusia</span>  
                   di bumi telah kehilangan maknanya"
-            </h4>
+            </div>
             <div class="container">
                 {{ Breadcrumbs::render() }}
             </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col" id="masterpelanggaran-page" class="">
-            <h4 class="mb-3">Data Sanksi</h4>
+            <div class="mb-3 pageTittle">Data Sanksi</div>
             
             @if(session('success'))
                 <div class="alert alert-success">

@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col" id="masterpelanggaran-page" class="">
-            <h4 class="mb-3">Pelanggaran Siswa</h4>
+            <div class="mb-3 pageTittle">Pelanggaran Siswa</div>
             
             @if(session('success'))
                 <div class="alert alert-success">
@@ -48,7 +48,8 @@
                             <div><span>Point pelanggaran anda : </span> {{$total_poin}} pts</div>
                         </div>
                 <div class="col-10">
-                    <form action="" id="frmFilter" method="get">
+                    <button class="btn btn-outline-primary btnFilterModal" data-bs-toggle="modal" data-bs-target="#modalFilter"><i class="bi bi-funnel"></i></button>
+                    <form action="" id="frmFilter" class="frmFilter" method="get">
                         <ul id="filterField">
                             <li class="me-2">
                                 <select name="pelanggaran_id" id="filterPelanggaran" class="form-control form-control-sm">
@@ -158,6 +159,48 @@
             
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalFilter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <form action="" id="frmFilter" class="frmFilter" method="get">
+                <ul id="filterField">
+                    <li class="me-2">
+                        <select name="pelanggaran_id" id="filterPelanggaran" class="form-control form-control-sm">
+                            <option value="">--pilih pelanggaran--</option>
+                            @foreach ($pelanggaran as $item)
+                                <option {{$pel == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->nama_pelanggaran}}</option>
+                            @endforeach
+                        </select>
+                    </li>
+                    <li class="me-2">
+                        <select name="kategori_id" id="filterKategori" class="form-control form-control-sm">
+                            <option value="">--pilih kategori--</option>
+                            @foreach ($kategori as $item)
+                                <option {{$kat == $item->id ? 'selected':''}} value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                    </li>
+                    <li class="me-2">
+                        <button class="btn btn-primary btn-sm" type="submit">Cari</a>
+                    </li>
+                    <li class="me-2">
+                        <button class="btn btn-secondary btn-sm" type="submit" id="btnReset">Reset</a>
+                    </li>
+                </ul>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
     $(document).ready(function(e) {

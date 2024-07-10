@@ -94,17 +94,17 @@
                     <div class="mb-3">
                         <input type="text" class="form-control  @error('nickname') is-invalid @enderror" placeholder="Nama Panggilan" id="nama_panggilan" name="nickname" value="">
                       </div>
-                      <div class="mb-3 row">
-                        <div class="col-6">
-                            <div class="radio-item text-center">
+                      <div class="mb-3 row mx-auto">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-1">
+                            <div class="radio-item text-center radio">
                                 <input name="jenis_kelamin" id="radio1" type="radio" value="pria">
-                                <label for="radio1"><img src="{{asset('images/assets/male.png')}}" alt="" srcset="" style="max-width: 50px;"><br> Pria</label>
+                                <label for="radio1"><img src="{{asset('images/assets/male.png')}}" alt="" srcset="" style="max-width: 50px;" class="img-fluid"><br> Pria</label>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="radio-item text-center">
+                        <div class="col-lg-6 col-md-6 col-sm-12 mb-1">
+                            <div class="radio-item text-center radio">
                                 <input name="jenis_kelamin" id="radio2" type="radio" value="wanita">
-                                <label for="radio2"><img src="{{asset('images/assets/female.png')}}" alt="" srcset="" style="max-width: 50px;"><br> Wanita</label>
+                                <label for="radio2"><img src="{{asset('images/assets/female.png')}}" alt="" srcset="" style="max-width: 50px;" class="img-fluid"><br> Wanita</label>
                             </div>
                         </div>
                       </div>

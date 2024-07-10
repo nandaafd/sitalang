@@ -4,10 +4,10 @@
     <div class="col" id="sitalang-header">
         <div class="row">
           <div class="col-9">
-                <h4 style="font-weight: 600;"> "<span style="color:#FF6B00;">Disiplin</span> 
-                    diri adalah  <span style="color:#FF6B00;">kekuatan ajaib</span>  Kegiatanmu 
-                     yang membuat kamu benar-benar tak terhentikan".
-                </h4>
+                <div style="font-weight: 600;" class="headerQuote"> "<span style="color:#FF6B00;">Disiplin</span> 
+                        diri adalah  <span style="color:#FF6B00;">kekuatan ajaib</span>  Kegiatanmu 
+                        yang membuat kamu benar-benar tak terhentikan".
+                </div>
                 <div class="container">
                     {{ Breadcrumbs::render() }}
                 </div>
@@ -20,7 +20,7 @@
     <div class="row">
         {{-- {{Auth::user()->siswa[0]['pembimbing_lapangan_id']}} --}}
         <div class="col" id="masterpelanggaran-page" class="">
-            <h4 class="mb-3">Tambah Master Pelanggaran</h4>
+            <div class="mb-3 pageTittle">Tambah Master Pelanggaran</div>
             
             @if(session('success'))
                 <div class="alert alert-success">
